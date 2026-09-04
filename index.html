@@ -256,10 +256,11 @@ const rankTable=[
  {need:15000000,name:'ブレイク候補',factor:1.78},
  {need:30000000,name:'ブレイク',factor:2.34},
  {need:50000000,name:'人気スター',factor:3.00},
- {need:100000000,name:'国民的スター',factor:3.45}
+ {need:100000000,name:'伝説級スター',factor:3.45}
 ];
 const app=t=>document.getElementById('app').innerHTML=t;
-const stars=n=>'★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(0,5-n);
+// 通常ランクは星1個から始まり、1億再生達成時は王冠で表示する。
+const rankMark=r=>r.idx>=rankTable.length-1?'👑':'★★★★★'.slice(0,r.idx+1)+'☆☆☆☆☆'.slice(0,4-r.idx);
 let state={};
 function resetState(){state={screen:'title',name:'',gender:'',genre:'',season:0,cum:0,results:[],trend:null,candidatesA:[],candidatesB:[],selA:null,selB:null,last:null,error:'',yearLuck:1,pendingRankUp:null}}
 function getRank(cum=state.cum){let idx=0;for(let i=0;i<rankTable.length;i++)if(cum>=rankTable[i].need)idx=i;return {...rankTable[idx],idx}}
@@ -329,7 +330,7 @@ function saveNameAndDebut(){const input=document.getElementById('nameInput');if(
 function setGender(g){const input=document.getElementById('nameInput');if(input)state.name=input.value;state.gender=g;renderDebut()}
 function setGenre(g){const input=document.getElementById('nameInput');if(input)state.name=input.value;state.genre=g;renderDebut()}
 function headerThumbHTML(){if(!state.genre||!state.gender)return '';const key=`${state.gender}|${state.genre}`;const src=characterImages[key]||'';return src?`<div class="status-thumb"><img src="${src}" alt="${state.gender} ${state.genre}"></div>`:''}
-function headerTopHTML(){const s=seasons[state.season],r=getRank();return `<div class="topbar"><div class="status-left"><div class="pill">${s.icon} ${s.en}　${state.season===3?'FINAL SINGLE':'第'+(state.season+1)+'弾'}</div><div class="status-identity">${headerThumbHTML()}<div class="status-text"><div class="status-name">${escapeHTML(state.name)}</div><div class="status-sub">${state.genre}</div></div></div></div><div class="status-right"><div class="status-stars">${stars(r.idx)}</div><div class="status-rank-name">${r.name}</div></div></div>`}
+function headerTopHTML(){const s=seasons[state.season],r=getRank();return `<div class="topbar"><div class="status-left"><div class="pill">${s.icon} ${s.en}　${state.season===3?'FINAL SINGLE':'第'+(state.season+1)+'弾'}</div><div class="status-identity">${headerThumbHTML()}<div class="status-text"><div class="status-name">${escapeHTML(state.name)}</div><div class="status-sub">${state.genre}</div></div></div></div><div class="status-right"><div class="status-stars">${rankMark(r)}</div><div class="status-rank-name">${r.name}</div></div></div>`}
 function statusPanelHTML(){const remain=Math.max(0,100000000-state.cum);const progress=Math.min(100,state.cum/1000000);return `<div class="status-panel"><div class="label">年間累計</div><div class="status-value">${fmt(state.cum)} <span style="font-size:.55em;color:var(--muted);font-weight:700">/ 100,000,000</span></div><div class="progress"><div style="width:${progress}%"></div></div><div class="status-meta"><span>達成率 <b>${progress.toFixed(1)}%</b></span><span>1億まであと <b>${fmt(remain)}</b> 回</span></div></div>`}
 function headerHTML(){return `${headerTopHTML()}${statusPanelHTML()}`}
 function renderSeason(){const s=seasons[state.season],r=getRank();app(`<div class="card">${headerHTML()}<div class="center" style="padding:18px 0 6px"><div class="small">${state.season===3?'この一曲ですべてが決まる。':'今季のシングル制作が始まる。'}</div><div class="big-number" style="font-size:34px;margin-top:5px">${s.icon} ${s.jp}</div>${state.season===3?`<p class="subtitle">1億まであと <b>${fmt(Math.max(0,100000000-state.cum))}</b> 回</p>`:''}</div><div class="divider"></div><h3 style="margin-bottom:8px">📈 今季のトレンド</h3><div class="trend"><span>${catLabel[state.trend.cat]||state.trend.cat}</span><span class="up">1語につき +15%</span></div><div class="trend-note">候補に <b>TREND</b> が出ることがあります。6候補の中で最大1語だけで、<b>出ない季節もあります。</b>使えば再生数＋15％。</div><div class="actions"><button class="primary" onclick="nav('song')">曲名を作る！</button></div></div>`)}
@@ -351,27 +352,29 @@ function rollHappening(){if(Math.random()>.25)return {name:'',desc:'',m:1,t:'non
 function renderRelease(){const x=state.last;app(`<div class="card release-wrap"><div class="release-title">NEW SINGLE / RELEASE</div><div class="song-title" style="margin-top:10px">♪ ${escapeHTML(x.title)}</div><div id="counter" class="counter">0</div><div class="small">再生</div><div id="hap"></div><div id="releaseNext" class="hidden actions"><button class="primary" onclick="finishRelease()">結果を見る</button></div></div>`);animateCounter(x.plays,x.h)}
 function animateCounter(target,h){const el=document.getElementById('counter'),duration=2200,start=performance.now();let hapShown=false;function tick(now){const t=Math.min(1,(now-start)/duration);const eased=1-Math.pow(1-t,3);el.textContent=fmt(target*eased);if(!hapShown&&h.m!==1&&t>.48){hapShown=true;const box=document.getElementById('hap');box.innerHTML=`<div class="happening ${h.t}"><div class="small">⚡ HAPPENING!</div><b>${h.name}</b><div class="small" style="margin-top:5px">${h.desc}</div></div>`}if(t<1)requestAnimationFrame(tick);else document.getElementById('releaseNext').classList.remove('hidden')}requestAnimationFrame(tick)}
 function finishRelease(){const oldRank=getRank(state.cum);state.cum+=state.last.plays;const newRank=getRank(state.cum);state.results.push({season:state.season,title:state.last.title,plays:state.last.plays,h:state.last.h,trendCount:state.last.trendCount,rankBefore:oldRank.idx,rankAfter:newRank.idx});if(newRank.idx>oldRank.idx){state.pendingRankUp={from:oldRank,to:newRank};nav('rankup')}else{nav('result')}}
-function renderRankUp(){const ru=state.pendingRankUp;if(!ru)return nav('result');app(`<div class="card rankup-card center"><div class="rankup-banner">RANK UP!</div><div class="rankup-title">${escapeHTML(state.name)}</div><div class="rankup-stage">${avatarHTML('rankup')}</div><div class="rankup-stars">${stars(ru.from.idx)}</div><div class="rankup-arrow">↓</div><div class="rankup-stars">${stars(ru.to.idx)}</div><div class="rankup-sub">${ru.to.name}</div><div class="rankup-note"><b>ランクアップ！</b><br>知名度が上がり、次の曲はさらに多くの人に届きます。</div><div class="actions"><button class="primary" onclick="closeRankUp()">結果を見る</button></div></div>`)}
+function renderRankUp(){const ru=state.pendingRankUp;if(!ru)return nav('result');app(`<div class="card rankup-card center"><div class="rankup-banner">RANK UP!</div><div class="rankup-title">${escapeHTML(state.name)}</div><div class="rankup-stage">${avatarHTML('rankup')}</div><div class="rankup-stars">${rankMark(ru.from)}</div><div class="rankup-arrow">↓</div><div class="rankup-stars">${rankMark(ru.to)}</div><div class="rankup-sub">${ru.to.name}</div><div class="rankup-note"><b>ランクアップ！</b><br>${ru.to.idx===rankTable.length-1?'1億再生達成！伝説級スターの誕生です。':'知名度が上がり、次の曲はさらに多くの人に届きます。'}</div><div class="actions"><button class="primary" onclick="closeRankUp()">結果を見る</button></div></div>`)}
 function closeRankUp(){state.pendingRankUp=null;nav('result')}
 function renderResult(){const x=state.results[state.results.length-1];const trendEffect=x.trendCount?`+${x.trendCount*15}%`:'';const trendResult=x.trendCount>0?`<div class="trend-note">📈 今回のトレンド補正：<b>${trendEffect}</b></div>`:'';app(`<div class="card center">${headerTopHTML()}<div class="divider"></div><div class="small">RELEASE RESULT</div><h2>♪ ${escapeHTML(x.title)}</h2><div class="label">今回の再生数</div><div class="big-number">${fmt(x.plays)}</div><div class="small">回</div>${trendResult}<div class="divider"></div>${statusPanelHTML()}<div class="actions"><button class="primary" onclick="nextAfterResult()">${state.season===3?'年間結果へ':seasons[state.season+1].jp+'へ'}</button></div></div>`)}
 function nextAfterResult(){if(state.season===3){nav('year');return}state.season++;startSeason()}
 function resultHeroHTML(){
  const rank=getRank();
- let cls='challenger', title='挑戦中', sub='次の一年でスターを目指そう', copy='まだ大きな波は来ていない。けれど、ここから一気に化ける可能性もある。';
- if(state.cum>=150000000){cls='legend';title='伝説級スター';sub='歴史に残るメガヒット！';copy='誰もがあなたの名を知っている。まさに時代を作った存在だ。';}
- else if(state.cum>=100000000){cls='national';title='国民的スター';sub='1億再生突破！';copy='街でもテレビでもネットでも、この一年あなたの曲が流れていた。';}
- else if(state.cum>=50000000){cls='popular';title='人気スター';sub='大ブレイク達成！';copy='確かなファンをつかみ、次の一年で1億再生も狙える位置まで来た。';}
- else if(state.cum>=30000000){cls='break';title='ブレイク';sub='注目度急上昇！';copy='手応えのある一年。あと一歩で大きなスター街道が見えてくる。';}
- return `<div class="result-hero ${cls}"><div class="mini">RESULT ANNOUNCEMENT</div><div class="hero-title">${title}</div><div class="hero-sub">${sub}</div><div class="hero-stars">${stars(rank.idx)}</div><div class="avatar-wrap">${avatarHTML('rankup')}</div><div class="hero-copy">${copy}</div></div>`;
+ const meta=resultMetaForRank(rank);
+ return `<div class="result-hero ${meta.cls}"><div class="mini">RESULT ANNOUNCEMENT</div><div class="hero-title">${meta.award}</div><div class="hero-sub">${meta.sub}</div><div class="hero-stars">${rankMark(rank)}</div><div class="avatar-wrap">${avatarHTML('rankup')}</div><div class="hero-copy">${meta.copy}</div></div>`;
 }
 
+function resultMetaForRank(rank=getRank()){
+ const data=[
+  {cls:'challenger',sub:'ここからスタート！',copy:'まだ名前は知られていない。次の一年で最初の波をつかもう。'},
+  {cls:'challenger',sub:'少しずつ注目が集まった！',copy:'あなたの歌を待つ人が増え始めた。次のヒットはもう近い。'},
+  {cls:'challenger',sub:'ブレイクまであと一歩！',copy:'確かな手応えをつかんだ一年。次の一曲で一気に化けるかもしれない。'},
+  {cls:'break',sub:'注目度急上昇！',copy:'手応えのある一年。大きなスター街道が見えてきた。'},
+  {cls:'popular',sub:'大ブレイク達成！',copy:'確かなファンをつかみ、次の一年で1億再生も狙える位置まで来た。'},
+  {cls:'legend',sub:'1億再生突破！',copy:'誰もがあなたの名を知っている。まさに時代を作った存在だ。'}
+ ];
+ return {...data[rank.idx],award:rank.name};
+}
 function shareResultMeta(){
- const rank=getRank();
- if(state.cum>=150000000)return {cls:'legend',award:'伝説級スター',sub:'歴史に残るメガヒット！'};
- if(state.cum>=100000000)return {cls:'national',award:'国民的スター',sub:'1億再生突破！'};
- if(state.cum>=50000000)return {cls:'popular',award:'人気スター',sub:'大ブレイク達成！'};
- if(state.cum>=30000000)return {cls:'break',award:'ブレイク',sub:'注目度急上昇！'};
- return {cls:'challenger',award:'挑戦中',sub:'次の一年でスターを目指そう'};
+ return resultMetaForRank(getRank());
 }
 function screenshotCardHTML(){
  const meta=shareResultMeta(), rank=getRank();
@@ -387,7 +390,7 @@ function screenshotCardHTML(){
    <div class="share-total-label">年間総再生数</div>
    <div class="share-total">${fmt(state.cum)}</div>
    <div class="share-total-unit">再生</div>
-   <div class="share-rank">${stars(rank.idx)}　${rank.name}</div>
+   <div class="share-rank">${rankMark(rank)}　${rank.name}</div>
    <div class="share-songs">
      ${state.results.map((x,i)=>`<div class="share-song">
        <div>${seasons[i].icon}</div>
