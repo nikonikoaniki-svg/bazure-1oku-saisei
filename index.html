@@ -251,12 +251,12 @@ const happenings=[
  {name:'世界的ミーム化！',desc:'予想外の伝播で超拡散！',m:1.9,t:'good',w:3},
 ];
 const rankTable=[
- {need:0,name:'無名新人',factor:1.00},
- {need:5000000,name:'注目新人',factor:1.35},
- {need:15000000,name:'ブレイク候補',factor:1.78},
- {need:30000000,name:'ブレイク',factor:2.34},
- {need:50000000,name:'人気スター',factor:3.00},
- {need:100000000,name:'伝説級スター',factor:3.45}
+ {need:0,name:'駆け出し',factor:1.00},
+ {need:1000000,name:'注目の新人',factor:1.17},
+ {need:10000000,name:'ブレイクスター',factor:1.43},
+ {need:30000000,name:'人気スター',factor:1.77},
+ {need:60000000,name:'国民的スター',factor:2.16},
+ {need:100000000,name:'伝説級スター',factor:2.50}
 ];
 const app=t=>document.getElementById('app').innerHTML=t;
 // 通常ランクは星1個から始まり、1億再生達成時は王冠で表示する。
@@ -364,11 +364,11 @@ function resultHeroHTML(){
 
 function resultMetaForRank(rank=getRank()){
  const data=[
-  {cls:'challenger',sub:'ここからスタート！',copy:'まだ名前は知られていない。次の一年で最初の波をつかもう。'},
+  {cls:'challenger',sub:'ここからスタート！',copy:'まだ名前は広く知られていない。次の一年で最初の波をつかもう。'},
   {cls:'challenger',sub:'少しずつ注目が集まった！',copy:'あなたの歌を待つ人が増え始めた。次のヒットはもう近い。'},
-  {cls:'challenger',sub:'ブレイクまであと一歩！',copy:'確かな手応えをつかんだ一年。次の一曲で一気に化けるかもしれない。'},
-  {cls:'break',sub:'注目度急上昇！',copy:'手応えのある一年。大きなスター街道が見えてきた。'},
-  {cls:'popular',sub:'大ブレイク達成！',copy:'確かなファンをつかみ、次の一年で1億再生も狙える位置まで来た。'},
+  {cls:'break',sub:'ブレイク達成！',copy:'確かな手応えをつかんだ一年。スター街道を走り始めた。'},
+  {cls:'popular',sub:'人気急上昇！',copy:'多くのファンをつかみ、ヒットを期待される存在になった。'},
+  {cls:'national',sub:'1億再生まであと一歩！',copy:'街でもテレビでもネットでも、あなたの曲が流れ始めている。'},
   {cls:'legend',sub:'1億再生突破！',copy:'誰もがあなたの名を知っている。まさに時代を作った存在だ。'}
  ];
  return {...data[rank.idx],award:rank.name};
