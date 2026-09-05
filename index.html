@@ -1,434 +1,369 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>バズれ、1億再生！スター誕生☆</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>たてがき400</title>
 <style>
-:root{
-  --bg:#0d1020;--panel:#171b31;--panel2:#202641;--text:#f8f8ff;--muted:#aeb5d1;
-  --accent:#ffd84d;--accent2:#ff70b8;--good:#55df9f;--bad:#ff7d7d;--line:#343b60;
-}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#22284a 0,#0d1020 48%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;min-height:100vh}
-button,input{font:inherit}
-button{cursor:pointer}
-#app{width:min(100%,720px);margin:0 auto;min-height:100vh;padding:18px 14px 40px}
-.card{background:rgba(23,27,49,.96);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.22)}
-.center{text-align:center}.hidden{display:none!important}.small{font-size:12px;color:var(--muted)}
-.logo{font-size:clamp(32px,8vw,54px);font-weight:1000;line-height:1.05;letter-spacing:-.04em;margin:22px 0 10px}.logo span{color:var(--accent)}
-.subtitle{color:var(--muted);line-height:1.75}
-.primary,.secondary,.ghost{border:0;border-radius:14px;padding:14px 18px;font-weight:900;transition:.15s transform,.15s opacity}.primary:active,.secondary:active,.ghost:active{transform:scale(.98)}
-.primary{background:linear-gradient(135deg,var(--accent),#ffae4d);color:#221b00;width:100%;font-size:18px}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line);width:100%}.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
-.actions{display:grid;gap:10px;margin-top:18px}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}.pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:#11162b;border:1px solid var(--line);font-size:15px;font-weight:800;color:#dfe4ff}.progress{height:16px;background:#0f1327;border-radius:999px;overflow:hidden;border:1px solid #2a3154}.progress>div{height:100%;background:linear-gradient(90deg,#ff6aad,#ffd84d);width:0;transition:width .6s ease}.status-left{display:grid;gap:10px}.status-name{font-size:34px;font-weight:1000;line-height:1.1;letter-spacing:-.03em}.status-sub{font-size:14px;color:var(--muted);font-weight:700}.status-right{text-align:right;display:grid;gap:6px;justify-items:end}.status-stars{font-size:28px;letter-spacing:5px;color:var(--accent);line-height:1}.status-rank-name{font-size:18px;font-weight:900}.status-panel{margin-top:18px;padding:18px;border-radius:18px;background:linear-gradient(180deg,#11162b,#171d36);border:1px solid var(--line)}.status-value{font-size:clamp(26px,6.8vw,42px);font-weight:1000;letter-spacing:-.03em;margin:4px 0 10px}.status-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:14px;color:#dfe4ff}
-.status-identity{display:flex;align-items:center;gap:12px;margin-top:8px}.status-thumb{width:72px;height:72px;flex:0 0 72px;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#353c67,#171b31);border:1px solid #4a527c;display:flex;align-items:flex-end;justify-content:center}.status-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 20%}.status-text{min-width:0}.status-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.status-sub{margin-top:5px}
-.big-number{font-size:clamp(36px,10vw,64px);font-weight:1000;letter-spacing:-.04em}.label{font-size:13px;color:var(--muted);margin-bottom:4px}.rank{font-size:24px;letter-spacing:3px;color:var(--accent)}
-.field{display:grid;gap:8px;margin:18px 0}.field label{font-weight:800}.field input{width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);background:#10152a;color:var(--text);outline:none}.form-error{display:none;margin:-8px 0 14px;padding:10px 12px;border-radius:12px;background:#3a2025;border:1px solid #7c444d;color:#ffd7d7;font-size:13px}.form-error.show{display:block}.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{padding:14px;border-radius:16px;background:#11162b;color:var(--text);border:1px solid var(--line);font-weight:900;min-height:54px}.choice.selected{border-color:var(--accent);box-shadow:0 0 0 2px rgba(255,216,77,.18) inset;background:#242541}
-.avatar{width:180px;height:250px;margin:12px auto;border-radius:26px;background:linear-gradient(160deg,#353c67,#171b31);display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #4a527c;box-shadow:0 18px 35px rgba(0,0,0,.25);overflow:hidden;padding:8px}.avatar .emoji{display:none}.avatar .charimg-wrap{flex:1;display:flex;align-items:flex-end;justify-content:center;width:100%;min-height:0}.avatar .charimg{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
-.avatar.rankup{width:250px;height:345px;border-radius:32px;position:relative;z-index:2;background:linear-gradient(180deg,#4a4a7d,#1a1d38);border:1px solid rgba(255,255,255,.15);box-shadow:0 22px 50px rgba(0,0,0,.35),0 0 40px rgba(255,216,77,.18);padding:10px}
-.avatar.rankup .emoji{display:none}
+  :root{
+    --cell: 30px;
+    --line: #b8a98a;
+    --paper: #fffdf7;
+    --ink: #222;
+    --active: #dbeafe;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;
+    background:#f4f1e8;
+    color:#222;
+  }
+  header{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    padding:10px 14px;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid #ddd;
+  }
+  h1{font-size:18px; margin:0 14px 0 0}
+  button{
+    font:inherit; padding:8px 12px; border:1px solid #aaa; border-radius:8px;
+    background:white; cursor:pointer;
+  }
+  button:hover{background:#f6f6f6}
+  #count{margin-left:auto; font-weight:700}
+  main{padding:18px; overflow:auto;}
+  #paperWrap{
+    position:relative;
+    width:max-content;
+    margin:auto;
+    padding:10px;
+    background:var(--paper);
+    box-shadow:0 3px 16px rgba(0,0,0,.12);
+  }
+  #grid{
+    display:grid;
+    grid-template-columns:repeat(20,var(--cell));
+    grid-template-rows:repeat(20,var(--cell));
+    direction:rtl;
+    border-top:1px solid var(--line);
+    border-right:1px solid var(--line);
+    background:var(--paper);
+  }
+  .cell{
+    width:var(--cell); height:var(--cell);
+    border-left:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+    font-size:20px;
+    line-height:1;
+    color:var(--ink);
+    user-select:none;
+    position:relative;
+    overflow:visible;
+  }
+  .cell.active{background:var(--active)}
+  .glyph{
+    display:inline-block;
+    position:relative;
+    line-height:1;
+    transform-origin:center;
+  }
 
-.rankup-card{position:relative;overflow:hidden;background:
- radial-gradient(circle at 50% -10%,rgba(255,216,77,.24),transparent 30%),
- radial-gradient(circle at 15% 25%,rgba(255,112,184,.22),transparent 26%),
- radial-gradient(circle at 85% 30%,rgba(109,213,250,.18),transparent 24%),
- linear-gradient(180deg,#211f44,#12162b 65%);
-}
-.rankup-card::before,.rankup-card::after{content:"";position:absolute;top:-40px;width:180px;height:380px;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0));filter:blur(4px);opacity:.45}
-.rankup-card::before{left:8%;transform:rotate(18deg)}
-.rankup-card::after{right:8%;transform:rotate(-18deg)}
-.rankup-banner{display:inline-block;padding:8px 16px;border-radius:999px;background:linear-gradient(90deg,#ffd84d,#ff70b8);color:#221b00;font-size:13px;font-weight:1000;letter-spacing:.12em}
-.rankup-title{font-size:clamp(28px,8vw,52px);font-weight:1000;letter-spacing:.04em;margin:14px 0 8px;color:#fff;text-shadow:0 4px 24px rgba(255,216,77,.35)}
-.rankup-sub{font-size:clamp(20px,5vw,28px);font-weight:900;color:var(--accent);margin:8px 0 14px}
-.rankup-stage{position:relative;padding:18px 0 8px}
-.rankup-stars{font-size:26px;letter-spacing:4px;color:#ffe482;margin:8px 0}
-.rankup-arrow{font-size:28px;color:#fff;opacity:.8;margin:8px 0}
-.rankup-name{font-size:13px;color:#e6ebff;letter-spacing:.12em;text-transform:uppercase}
-.rankup-note{margin-top:14px;line-height:1.7;color:#dfe4ff}
-.rankup-note b{color:#fff}
-.trends{display:grid;gap:9px;margin:16px 0}.trend{display:flex;justify-content:space-between;padding:11px 12px;border-radius:13px;background:#11162b;border:1px solid var(--line)}.up{color:var(--good);font-weight:900}.down{color:var(--bad);font-weight:900}
-.word-section{margin-top:18px}.word-section h3{font-size:15px;margin:0 0 10px;color:#e9ecff}.words{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.word{min-height:76px;padding:10px 8px;border-radius:15px;background:#11162b;color:var(--text);border:1px solid var(--line);font-weight:900;line-height:1.25}.word.selected{border-color:var(--accent);background:#2b2942;box-shadow:0 0 0 2px rgba(255,216,77,.15) inset}.word small{display:block;color:var(--muted);font-weight:500;margin-top:6px}.word.trend-hit{border-color:#55df9f;box-shadow:0 0 0 2px rgba(85,223,159,.14) inset}.trend-badge{display:inline-block;margin-top:6px;padding:3px 7px;border-radius:999px;background:#17352d;color:#7bf1bc;font-size:10px;font-weight:900}.trend-note{margin-top:10px;padding:12px;border-radius:13px;background:#11162b;border:1px solid var(--line);color:#dfe4ff;line-height:1.6}.trend-note b{color:var(--good)}
-.title-preview{margin:20px 0;padding:18px;border-radius:18px;background:linear-gradient(135deg,#252a4b,#301f3c);border:1px solid #4a4770}.song-title{font-size:clamp(24px,7vw,40px);font-weight:1000;line-height:1.2;word-break:break-word}.meter-row{display:grid;grid-template-columns:110px 1fr 36px;align-items:center;gap:8px;margin:8px 0;font-size:13px}.meter{height:8px;background:#10152a;border-radius:999px;overflow:hidden}.meter>i{display:block;height:100%;background:linear-gradient(90deg,#6dd5fa,#ff70b8);border-radius:999px}
-.release-wrap{padding:30px 0;text-align:center}.release-title{color:var(--muted);letter-spacing:.18em;font-weight:800}.counter{font-size:clamp(46px,14vw,86px);font-weight:1000;letter-spacing:-.05em;margin:18px 0}.happening{margin:16px 0;padding:16px;border-radius:18px;background:#2a1f36;border:1px solid #744e80;animation:pop .35s ease}.happening.good{background:#17352d;border-color:#34735f}.happening.bad{background:#3a2025;border-color:#7c444d}@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
-.result-list{display:grid;gap:10px;margin:14px 0}.result-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px;border-radius:14px;background:#11162b;border:1px solid var(--line)}.season-icon{font-size:22px}.record{padding:14px;border-radius:14px;background:#11162b;border:1px solid var(--line);margin-top:16px}.success{color:var(--accent);font-weight:1000}.fail{color:#c8cee7;font-weight:1000}
-.test-badge{position:fixed;right:10px;bottom:10px;padding:6px 8px;border-radius:8px;background:#0009;color:#fff;font-size:10px;z-index:9}.divider{height:1px;background:var(--line);margin:18px 0}
-.result-hero{position:relative;overflow:hidden;margin-bottom:18px;padding:20px 18px 18px;border-radius:24px;border:1px solid rgba(255,255,255,.12);text-align:center}
-.result-hero::before{content:"";position:absolute;inset:-10% -20% auto -20%;height:70%;background:radial-gradient(circle at center,rgba(255,255,255,.18),rgba(255,255,255,0) 60%);pointer-events:none}
-.result-hero .mini{position:relative;z-index:1;font-size:12px;letter-spacing:.2em;color:#f5f6ffb8;font-weight:900}
-.result-hero .hero-title{position:relative;z-index:1;font-size:clamp(30px,8vw,52px);font-weight:1000;letter-spacing:.04em;line-height:1.08;margin:8px 0 6px;text-shadow:0 6px 24px rgba(0,0,0,.28)}
-.result-hero .hero-sub{position:relative;z-index:1;font-size:18px;font-weight:900;margin-bottom:10px}
-.result-hero .hero-copy{position:relative;z-index:1;max-width:38em;margin:12px auto 0;color:#eef1ff;line-height:1.7}
-.result-hero .hero-stars{position:relative;z-index:1;font-size:28px;letter-spacing:4px;margin:10px 0;color:#fff3b0}
-.result-hero .avatar-wrap{position:relative;z-index:1}
-.result-hero.legend{background:linear-gradient(180deg,#5d215f,#241534 66%)}
-.result-hero.legend .hero-title{color:#ffe17a}
-.result-hero.national{background:linear-gradient(180deg,#6b4b12,#241934 66%)}
-.result-hero.national .hero-title{color:#ffd84d}
-.result-hero.popular{background:linear-gradient(180deg,#22476e,#151d38 66%)}
-.result-hero.popular .hero-title{color:#9fdcff}
-.result-hero.break{background:linear-gradient(180deg,#24563f,#151d2c 66%)}
-.result-hero.break .hero-title{color:#9ef0c5}
-.result-hero.challenger{background:linear-gradient(180deg,#3b3f66,#161b31 66%)}
-.result-hero.challenger .hero-title{color:#d9deff}
+  /* 句読点：縦組みではマスの右上 */
+  .glyph.kuten,
+  .glyph.touten{
+    position:absolute;
+    top:2px;
+    right:3px;
+    font-size:18px;
+    line-height:1;
+  }
 
-.share-card{
-  position:relative;
-  overflow:hidden;
-  width:100%;
-  max-width:620px;
-  margin:0 auto 18px;
-  padding:22px 20px 20px;
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 24px 60px rgba(0,0,0,.34);
-  text-align:center;
-  background:linear-gradient(180deg,#252b50,#11162b 72%);
-}
-.share-card::before{
-  content:"";
-  position:absolute;
-  inset:-15% -15% auto -15%;
-  height:48%;
-  background:radial-gradient(circle at center,rgba(255,255,255,.18),rgba(255,255,255,0) 65%);
-  pointer-events:none;
-}
-.share-card.legend{background:linear-gradient(180deg,#6b276c,#241432 70%)}
-.share-card.national{background:linear-gradient(180deg,#755315,#2a1b2d 70%)}
-.share-card.popular{background:linear-gradient(180deg,#28547e,#151c35 70%)}
-.share-card.break{background:linear-gradient(180deg,#286044,#151f2d 70%)}
-.share-card.challenger{background:linear-gradient(180deg,#41466e,#171b31 70%)}
-.share-brand{
-  position:relative;z-index:1;
-  font-size:12px;font-weight:1000;letter-spacing:.12em;color:#eef1ffcc
-}
-.share-year{
-  position:relative;z-index:1;
-  margin-top:5px;font-size:12px;letter-spacing:.22em;color:#eef1ff99;font-weight:900
-}
-.share-award{
-  position:relative;z-index:1;
-  margin:10px 0 4px;
-  font-size:clamp(30px,8vw,52px);
-  line-height:1.05;
-  font-weight:1000;
-  letter-spacing:.03em;
-  color:#ffd84d;
-  text-shadow:0 6px 28px rgba(0,0,0,.28)
-}
-.share-sub{
-  position:relative;z-index:1;
-  font-size:15px;font-weight:900;color:#fff;margin-bottom:10px
-}
-.share-card .avatar.rankup{
-  width:160px;height:195px;margin:10px auto 8px;
-}
-.share-card .avatar.rankup .emoji{font-size:78px}
+  /* 中黒などは中央 */
+  .glyph.center-punct{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
 
-.share-artist{
-  position:relative;z-index:1;
-  font-size:clamp(26px,7vw,40px);
-  line-height:1.1;font-weight:1000;letter-spacing:-.02em;margin:8px 0 2px
-}
-.share-profile{
-  position:relative;z-index:1;
-  font-size:12px;color:#e6eaffaa;font-weight:800
-}
-.share-total-label{
-  position:relative;z-index:1;
-  margin-top:14px;font-size:12px;color:#eef1ff99;font-weight:900;letter-spacing:.12em
-}
-.share-total{
-  position:relative;z-index:1;
-  font-size:clamp(38px,10vw,64px);
-  line-height:1;font-weight:1000;letter-spacing:-.04em;margin:5px 0
-}
-.share-total-unit{
-  position:relative;z-index:1;font-size:12px;color:#eef1ff99
-}
-.share-rank{
-  position:relative;z-index:1;
-  margin:10px 0 12px;
-  font-size:22px;letter-spacing:4px;color:#fff0a8
-}
-.share-songs{
-  position:relative;z-index:1;
-  display:grid;gap:7px;margin-top:10px;text-align:left
-}
-.share-song{
-  display:grid;
-  grid-template-columns:26px minmax(0,1fr) auto;
-  gap:8px;align-items:center;
-  padding:8px 10px;
-  border-radius:12px;
-  background:rgba(7,10,24,.34);
-  border:1px solid rgba(255,255,255,.07)
-}
-.share-song-title{
-  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-  font-size:13px;font-weight:900
-}
-.share-song-plays{font-size:12px;font-weight:900;color:#fff}
-.share-best{
-  position:relative;z-index:1;
-  margin-top:10px;padding:10px 12px;
-  border-radius:14px;
-  background:rgba(255,216,77,.10);
-  border:1px solid rgba(255,216,77,.22)
-}
-.share-best .small{color:#fff3c2aa}
-.share-best b{display:block;margin-top:2px}
-.share-footer{
-  position:relative;z-index:1;
-  margin-top:13px;padding-top:11px;
-  border-top:1px solid rgba(255,255,255,.10);
-  font-size:11px;color:#eef1ff88;letter-spacing:.05em
-}
-.share-note{
-  text-align:center;color:var(--muted);font-size:12px;margin:10px 0 16px
-}
-.result-mini-avatar{width:138px;height:190px;margin:12px auto 6px;border-radius:22px;box-shadow:0 14px 28px rgba(0,0,0,.28),0 0 28px rgba(255,216,77,.10)}
-.result-mini-avatar .emoji{display:none}
+  /* 縦書き括弧：CSS文字の回転で自然な向きに */
+  .glyph.bracket{
+    transform:rotate(90deg);
+  }
 
-.song-character-card{margin:16px 0 14px;padding:14px;border-radius:18px;background:linear-gradient(180deg,#171d36,#11162b);border:1px solid var(--line);display:grid;justify-items:center;text-align:center}.song-character-card .small{margin-bottom:6px}.song-avatar{width:150px;height:205px;margin:6px auto 8px}.song-character-name{font-size:14px;font-weight:900;color:#e9ecff}.song-character-role{font-size:12px;color:var(--muted)}
-@media(max-width:440px){
-  .share-card{padding:18px 14px 16px;border-radius:22px}
-  .share-card .avatar.rankup{width:150px;height:205px}
-  .share-card .avatar.rankup .emoji{display:none}
-  .share-award{font-size:34px}
-  .share-total{font-size:42px}
-  .share-song{padding:7px 8px}
-}
+  /* 横向きが自然な欧文・単独算用数字 */
+  .glyph.rotate{
+    transform:rotate(90deg);
+  }
 
-@media(max-width:440px){.status-thumb{width:58px;height:58px;flex-basis:58px}.status-identity{gap:9px}#app{padding:10px 9px 28px}.card{padding:16px;border-radius:18px}.words{gap:7px}.word{font-size:13px;min-height:72px}.choice-grid{gap:8px}.avatar{width:160px;height:225px}.avatar.rankup{width:210px;height:290px}.avatar.rankup .emoji{display:none}.status-name{font-size:28px}.status-stars{font-size:23px;letter-spacing:3px}.status-rank-name{font-size:16px}.pill{font-size:13px;padding:8px 12px}.status-value{font-size:28px}.status-meta{font-size:12px}.song-avatar{width:128px;height:178px}.song-character-card{padding:12px}}
+  /* 長音符など */
+  .glyph.longmark{
+    transform:rotate(90deg);
+  }
+
+  #ime{
+    position:absolute;
+    z-index:10;
+    width:var(--cell);
+    height:var(--cell);
+    margin:0;
+    padding:0;
+    border:0;
+    outline:2px solid #2563eb;
+    outline-offset:-2px;
+    background:transparent;
+    color:transparent;
+    caret-color:#2563eb;
+    font-size:20px;
+    resize:none;
+    overflow:hidden;
+    opacity:.035;
+  }
+  #status{
+    margin-top:10px;
+    font-size:13px;
+    color:#555;
+    text-align:center;
+  }
+  @media(max-width:720px){
+    :root{--cell:28px}
+    main{padding:8px}
+  }
 </style>
 </head>
 <body>
-<div id="app"></div>
+<header>
+  <h1>たてがき400</h1>
+  <button id="clearBtn">全部消す</button>
+  <button id="copyBtn">コピー</button>
+  <button id="saveBtn">保存</button>
+  <span id="count">0 / 400字</span>
+</header>
+
+<main>
+  <div id="paperWrap">
+    <div id="grid" aria-label="20文字×20列の縦書き原稿用紙"></div>
+    <textarea id="ime" rows="1" aria-label="縦書き入力"></textarea>
+  </div>
+  <div id="status">右上から下へ入力し、20字で左の列へ移ります。Backspaceで1字消せます。</div>
+</main>
+
 <script>
-const fmt=n=>Math.max(0,Math.round(n)).toLocaleString('ja-JP');
-function safeGet(key){try{return localStorage.getItem(key)}catch(e){return null}}
-function safeSet(key,val){try{localStorage.setItem(key,val)}catch(e){}}
-const seasons=[
- {key:'spring',icon:'🌸',en:'SPRING',jp:'春',base:6200000},
- {key:'summer',icon:'☀️',en:'SUMMER',jp:'夏',base:9800000},
- {key:'autumn',icon:'🍁',en:'AUTUMN',jp:'秋',base:14500000},
- {key:'winter',icon:'❄️',en:'WINTER',jp:'冬',base:22000000}
-];
-const genreInfo={
- '演歌':{emojiM:'👨🏻',emojiF:'👩🏻',costume:'和服',likes:['和風','人生','季節','恋愛']},
- 'ロック':{emojiM:'👨🏻‍🎤',emojiF:'👩🏻‍🎤',costume:'革ジャン',likes:['夜','反抗','英語','青春']},
- 'ポップス':{emojiM:'🧑🏻‍🎤',emojiF:'👩🏻‍🎤',costume:'カジュアル',likes:['恋愛','青春','日常','季節']},
- 'アイドル':{emojiM:'🤴🏻',emojiF:'👸🏻',costume:'キラキラ衣装',likes:['恋愛','青春','キラキラ','食べ物']}
-};
+(() => {
+  const ROWS=20, COLS=20, LIMIT=400;
+  const grid=document.getElementById('grid');
+  const ime=document.getElementById('ime');
+  const count=document.getElementById('count');
+  const status=document.getElementById('status');
 
-const characterImages={
- '男性|演歌':'images/male_enka.png',
- '女性|演歌':'images/female_enka.png',
- '男性|ロック':'images/male_rock.png',
- '女性|ロック':'images/female_rock.png',
- '男性|ポップス':'images/male_pops.png',
- '女性|ポップス':'images/female_pops.png',
- '男性|アイドル':'images/male_idol.png',
- '女性|アイドル':'images/female_idol.png'
-};
-const catLabel={恋愛:'💕恋愛',季節:'🌸季節',食べ物:'🍜食べ物',夜:'🌙夜',青春:'🏫青春',和風:'👘和風',人生:'🛤人生',反抗:'⚡反抗',英語:'🔤英語',日常:'🏠日常',不思議:'🛸不思議',キラキラ:'✨キラキラ'};
-const A=[{"id":"A001","text":"勝手に","buzz":20,"unique":5,"cat":"反抗","source":"base","reference":null},{"id":"A002","text":"真夜中の","buzz":18,"unique":10,"cat":"夜","source":"base","reference":null},{"id":"A003","text":"君だけの","buzz":21,"unique":9,"cat":"恋愛","source":"base","reference":null},{"id":"A004","text":"ルビーの","buzz":30,"unique":6,"cat":"キラキラ","source":"base","reference":null},{"id":"A005","text":"恋する","buzz":17,"unique":8,"cat":"恋愛","source":"base","reference":null},{"id":"A006","text":"世界に一つだけの","buzz":18,"unique":14,"cat":"人生","source":"base","reference":null},{"id":"A007","text":"放課後の","buzz":20,"unique":11,"cat":"青春","source":"base","reference":null},{"id":"A008","text":"透明な","buzz":9,"unique":19,"cat":"不思議","source":"base","reference":null},{"id":"A009","text":"最後の","buzz":19,"unique":11,"cat":"人生","source":"base","reference":null},{"id":"A010","text":"走れ！","buzz":12,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A011","text":"さよなら","buzz":23,"unique":10,"cat":"恋愛","source":"base","reference":null},{"id":"A012","text":"冷蔵庫の","buzz":6,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A013","text":"校長先生の","buzz":4,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A014","text":"三日前の","buzz":10,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A015","text":"なぜか","buzz":9,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A016","text":"午前二時の","buzz":20,"unique":12,"cat":"夜","source":"base","reference":null},{"id":"A017","text":"雨の","buzz":23,"unique":11,"cat":"季節","source":"base","reference":null},{"id":"A018","text":"夏色","buzz":22,"unique":11,"cat":"季節","source":"base","reference":null},{"id":"A019","text":"冬の","buzz":21,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"A020","text":"桜色の","buzz":15,"unique":8,"cat":"季節","source":"base","reference":null},{"id":"A021","text":"君と","buzz":23,"unique":6,"cat":"恋愛","source":"base","reference":null},{"id":"A022","text":"愛の","buzz":17,"unique":6,"cat":"恋愛","source":"base","reference":null},{"id":"A023","text":"情熱の","buzz":9,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A024","text":"涙の","buzz":22,"unique":7,"cat":"恋愛","source":"base","reference":null},{"id":"A025","text":"永遠の","buzz":17,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"A026","text":"孤独な","buzz":23,"unique":11,"cat":"人生","source":"base","reference":null},{"id":"A027","text":"反逆の","buzz":16,"unique":16,"cat":"反抗","source":"base","reference":null},{"id":"A028","text":"爆音の","buzz":20,"unique":15,"cat":"反抗","source":"base","reference":null},{"id":"A029","text":"ROCKな","buzz":15,"unique":13,"cat":"反抗","source":"base","reference":null},{"id":"A030","text":"LOVE","buzz":13,"unique":16,"cat":"英語","source":"base","reference":null},{"id":"A031","text":"ハロー","buzz":8,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A032","text":"キラキラ","buzz":21,"unique":13,"cat":"キラキラ","source":"base","reference":null},{"id":"A033","text":"100万回の","buzz":19,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"A034","text":"はじめての","buzz":11,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A035","text":"あの日の","buzz":14,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A036","text":"青春の","buzz":23,"unique":11,"cat":"季節","source":"base","reference":null},{"id":"A037","text":"雪降る","buzz":22,"unique":11,"cat":"季節","source":"base","reference":null},{"id":"A038","text":"満月の","buzz":18,"unique":15,"cat":"夜","source":"base","reference":null},{"id":"A039","text":"秘密の","buzz":16,"unique":20,"cat":"不思議","source":"base","reference":null},{"id":"A040","text":"ときめく","buzz":5,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A041","text":"あなたへの","buzz":21,"unique":8,"cat":"恋愛","source":"base","reference":null},{"id":"A042","text":"昼下がりの","buzz":12,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A043","text":"ふしぎな","buzz":15,"unique":20,"cat":"不思議","source":"base","reference":null},{"id":"A044","text":"浪花の","buzz":19,"unique":14,"cat":"和風","source":"base","reference":null},{"id":"A045","text":"港の","buzz":17,"unique":14,"cat":"和風","source":"base","reference":null},{"id":"A046","text":"終電後の","buzz":21,"unique":13,"cat":"夜","source":"base","reference":null},{"id":"A047","text":"銀色の","buzz":20,"unique":17,"cat":"キラキラ","source":"base","reference":null},{"id":"A048","text":"星降る","buzz":15,"unique":9,"cat":"夜","source":"base","reference":null},{"id":"A049","text":"メランコリーな","buzz":10,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A050","text":"踊る","buzz":7,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A051","text":"とろける","buzz":11,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A052","text":"もぐもぐ","buzz":14,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A053","text":"禁断の","buzz":15,"unique":15,"cat":"反抗","source":"base","reference":null},{"id":"A054","text":"片道切符の","buzz":10,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A055","text":"帰り道の","buzz":18,"unique":12,"cat":"人生","source":"base","reference":null},{"id":"A056","text":"恋人たちの","buzz":22,"unique":11,"cat":"恋愛","source":"base","reference":null},{"id":"A057","text":"夕暮れの","buzz":5,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A058","text":"朝焼けの","buzz":19,"unique":7,"cat":"季節","source":"base","reference":null},{"id":"A059","text":"月曜日の","buzz":17,"unique":14,"cat":"夜","source":"base","reference":null},{"id":"A060","text":"日曜日の","buzz":10,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A061","text":"春風の","buzz":23,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"A062","text":"秋色の","buzz":16,"unique":12,"cat":"季節","source":"base","reference":null},{"id":"A063","text":"真夏の","buzz":24,"unique":12,"cat":"季節","source":"base","reference":null},{"id":"A064","text":"雪解けの","buzz":21,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"A065","text":"木枯らしの","buzz":15,"unique":10,"cat":"季節","source":"base","reference":null},{"id":"A066","text":"雨上がりの","buzz":16,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"A067","text":"夕立の","buzz":24,"unique":12,"cat":"季節","source":"base","reference":null},{"id":"A068","text":"流星の","buzz":17,"unique":13,"cat":"夜","source":"base","reference":null},{"id":"A069","text":"星空の","buzz":17,"unique":14,"cat":"夜","source":"base","reference":null},{"id":"A070","text":"夜明けの","buzz":15,"unique":11,"cat":"夜","source":"base","reference":null},{"id":"A071","text":"午前零時の","buzz":18,"unique":10,"cat":"夜","source":"base","reference":null},{"id":"A072","text":"明け方の","buzz":22,"unique":11,"cat":"夜","source":"base","reference":null},{"id":"A073","text":"眠れない","buzz":6,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A074","text":"夢見る","buzz":10,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A075","text":"忘れない","buzz":8,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A076","text":"会いたい","buzz":23,"unique":6,"cat":"恋愛","source":"base","reference":null},{"id":"A077","text":"会えない","buzz":22,"unique":6,"cat":"恋愛","source":"base","reference":null},{"id":"A078","text":"知らない","buzz":10,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A079","text":"まだ見ぬ","buzz":14,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A080","text":"いつかの","buzz":13,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A081","text":"もしもの","buzz":10,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A082","text":"まぼろしの","buzz":15,"unique":19,"cat":"不思議","source":"base","reference":null},{"id":"A083","text":"嘘つきな","buzz":10,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A084","text":"正直な","buzz":14,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A085","text":"やさしい","buzz":10,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A086","text":"せつない","buzz":15,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A087","text":"眩しい","buzz":10,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A088","text":"青い","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A089","text":"赤い","buzz":5,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A090","text":"白い","buzz":12,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A091","text":"黒い","buzz":7,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A092","text":"金色の","buzz":14,"unique":16,"cat":"キラキラ","source":"base","reference":null},{"id":"A093","text":"紫の","buzz":7,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A094","text":"虹色の","buzz":17,"unique":10,"cat":"季節","source":"base","reference":null},{"id":"A095","text":"レモン色の","buzz":11,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"A096","text":"桃色の","buzz":14,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"A097","text":"水色の","buzz":7,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A098","text":"群青の","buzz":12,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A099","text":"銀河の","buzz":12,"unique":15,"cat":"不思議","source":"base","reference":null},{"id":"A100","text":"宇宙の","buzz":19,"unique":14,"cat":"不思議","source":"base","reference":null},{"id":"A101","text":"地球最後の","buzz":15,"unique":18,"cat":"不思議","source":"base","reference":null},{"id":"A102","text":"世界最初の","buzz":12,"unique":18,"cat":"不思議","source":"base","reference":null},{"id":"A103","text":"未来からの","buzz":12,"unique":17,"cat":"不思議","source":"base","reference":null},{"id":"A104","text":"昨日までの","buzz":20,"unique":9,"cat":"人生","source":"base","reference":null},{"id":"A105","text":"明日からの","buzz":17,"unique":7,"cat":"人生","source":"base","reference":null},{"id":"A106","text":"千年後の","buzz":11,"unique":18,"cat":"不思議","source":"base","reference":null},{"id":"A107","text":"一秒前の","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A108","text":"百年ぶりの","buzz":21,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"A109","text":"一生分の","buzz":19,"unique":13,"cat":"人生","source":"base","reference":null},{"id":"A110","text":"二度目の","buzz":11,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A111","text":"ひとりぼっちの","buzz":13,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A112","text":"ふたりだけの","buzz":13,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A113","text":"みんなの","buzz":12,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A114","text":"僕らの","buzz":5,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A115","text":"私たちの","buzz":13,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A116","text":"君のいない","buzz":18,"unique":9,"cat":"恋愛","source":"base","reference":null},{"id":"A117","text":"君がいる","buzz":23,"unique":7,"cat":"恋愛","source":"base","reference":null},{"id":"A118","text":"名前のない","buzz":10,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A119","text":"顔のない","buzz":7,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A120","text":"声のない","buzz":8,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A121","text":"音のない","buzz":9,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A122","text":"色のない","buzz":12,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A123","text":"影のない","buzz":8,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A124","text":"出口のない","buzz":10,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A125","text":"終わらない","buzz":6,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A126","text":"始まらない","buzz":15,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A127","text":"止まらない","buzz":12,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A128","text":"壊れかけの","buzz":13,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A129","text":"忘れかけた","buzz":13,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A130","text":"失くした","buzz":6,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A131","text":"見つけた","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A132","text":"拾った","buzz":10,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A133","text":"落とした","buzz":8,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A134","text":"置き忘れた","buzz":7,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A135","text":"消えた","buzz":13,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A136","text":"逃げた","buzz":13,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A137","text":"迷子の","buzz":7,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A138","text":"迷い込んだ","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A139","text":"転がる","buzz":6,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A140","text":"飛び出す","buzz":10,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A141","text":"笑う","buzz":12,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A142","text":"泣いた","buzz":11,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A143","text":"叫ぶ","buzz":11,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A144","text":"囁く","buzz":14,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A145","text":"歌う","buzz":12,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A146","text":"踊れ！","buzz":6,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A147","text":"眠る","buzz":7,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A148","text":"目覚める","buzz":7,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A149","text":"燃える","buzz":12,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A150","text":"凍える","buzz":10,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A151","text":"ゆらゆら","buzz":12,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A152","text":"ふわふわ","buzz":7,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A153","text":"ぐるぐる","buzz":11,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A154","text":"どきどき","buzz":15,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A155","text":"わくわく","buzz":6,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A156","text":"しとしと","buzz":14,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A157","text":"ざあざあ","buzz":13,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A158","text":"キンキン","buzz":14,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A159","text":"アツアツ","buzz":8,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A160","text":"ほかほか","buzz":5,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A161","text":"ちょっとだけ","buzz":6,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A162","text":"たぶん","buzz":10,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A163","text":"やっぱり","buzz":11,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A164","text":"どうしても","buzz":7,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A165","text":"なんとなく","buzz":12,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A166","text":"いきなり","buzz":9,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A167","text":"こっそり","buzz":13,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A168","text":"うっかり","buzz":7,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A169","text":"しっかり","buzz":8,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A170","text":"めちゃくちゃ","buzz":13,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A171","text":"本気の","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A172","text":"本当の","buzz":13,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A173","text":"偽物の","buzz":9,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A174","text":"幻の","buzz":17,"unique":20,"cat":"不思議","source":"base","reference":null},{"id":"A175","text":"奇跡の","buzz":22,"unique":7,"cat":"人生","source":"base","reference":null},{"id":"A176","text":"運命の","buzz":17,"unique":9,"cat":"人生","source":"base","reference":null},{"id":"A177","text":"偶然の","buzz":7,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A178","text":"突然の","buzz":14,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"A179","text":"最高の","buzz":11,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A180","text":"最低の","buzz":13,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A181","text":"無敵の","buzz":17,"unique":14,"cat":"反抗","source":"base","reference":null},{"id":"A182","text":"最強の","buzz":16,"unique":15,"cat":"反抗","source":"base","reference":null},{"id":"A183","text":"最弱の","buzz":12,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A184","text":"普通の","buzz":7,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A185","text":"特別な","buzz":6,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"A186","text":"変な","buzz":8,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A187","text":"妙な","buzz":15,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A188","text":"不思議な","buzz":16,"unique":15,"cat":"不思議","source":"base","reference":null},{"id":"A189","text":"可愛い","buzz":23,"unique":7,"cat":"恋愛","source":"base","reference":null},{"id":"A190","text":"かっこいい","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A191","text":"昭和の","buzz":8,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A192","text":"平成の","buzz":6,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"A193","text":"令和の","buzz":8,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"A194","text":"都会の","buzz":14,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A195","text":"田舎の","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A196","text":"駅前の","buzz":11,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"A197","text":"屋上の","buzz":13,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A198","text":"教室の","buzz":16,"unique":7,"cat":"青春","source":"base","reference":null},{"id":"A199","text":"商店街の","buzz":15,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"A200","text":"路地裏の","buzz":13,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"A201","text":"およげ！","buzz":13,"unique":13,"cat":"日常","source":"famous","reference":"およげ！たいやきくん"},{"id":"A202","text":"上を向いて","buzz":17,"unique":13,"cat":"日常","source":"famous","reference":"上を向いて歩こう"},{"id":"A203","text":"見上げてごらん","buzz":12,"unique":17,"cat":"日常","source":"famous","reference":"見上げてごらん夜の星を"},{"id":"A204","text":"川の流れの","buzz":20,"unique":19,"cat":"日常","source":"famous","reference":"川の流れのように"},{"id":"A205","text":"愛燦燦","buzz":30,"unique":11,"cat":"恋愛","source":"famous","reference":"愛燦燦"},{"id":"A206","text":"津軽海峡","buzz":28,"unique":8,"cat":"和風","source":"famous","reference":"津軽海峡・冬景色"},{"id":"A207","text":"天城","buzz":26,"unique":9,"cat":"和風","source":"famous","reference":"天城越え"},{"id":"A208","text":"舟","buzz":15,"unique":19,"cat":"日常","source":"famous","reference":"舟唄"},{"id":"A209","text":"北の","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"北の宿から"},{"id":"A210","text":"喝采の","buzz":16,"unique":14,"cat":"日常","source":"famous","reference":"喝采"},{"id":"A211","text":"時の","buzz":14,"unique":14,"cat":"日常","source":"famous","reference":"時の流れに身をまかせ"},{"id":"A212","text":"いい日","buzz":15,"unique":16,"cat":"日常","source":"famous","reference":"いい日旅立ち"},{"id":"A213","text":"秋桜の","buzz":28,"unique":6,"cat":"季節","source":"famous","reference":"秋桜"},{"id":"A214","text":"プレイバック","buzz":17,"unique":12,"cat":"日常","source":"famous","reference":"プレイバックPart2"},{"id":"A215","text":"異邦人の","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"異邦人"},{"id":"A216","text":"木綿の","buzz":22,"unique":20,"cat":"日常","source":"famous","reference":"木綿のハンカチーフ"},{"id":"A217","text":"魅せられて","buzz":17,"unique":19,"cat":"日常","source":"famous","reference":"魅せられて"},{"id":"A218","text":"SWEET","buzz":25,"unique":15,"cat":"英語","source":"famous","reference":"SWEET MEMORIES"},{"id":"A219","text":"飾りじゃないのよ","buzz":17,"unique":16,"cat":"日常","source":"famous","reference":"飾りじゃないのよ涙は"},{"id":"A220","text":"DESIRE","buzz":23,"unique":10,"cat":"英語","source":"famous","reference":"DESIRE -情熱-"},{"id":"A221","text":"少女","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"少女A"},{"id":"A222","text":"セーラー服と","buzz":18,"unique":19,"cat":"日常","source":"famous","reference":"セーラー服と機関銃"},{"id":"A223","text":"もしも","buzz":16,"unique":17,"cat":"日常","source":"famous","reference":"もしもピアノが弾けたなら"},{"id":"A224","text":"ワインレッドの","buzz":22,"unique":16,"cat":"日常","source":"famous","reference":"ワインレッドの心"},{"id":"A225","text":"恋人よ","buzz":22,"unique":7,"cat":"恋愛","source":"famous","reference":"恋人よ"},{"id":"A226","text":"駅の","buzz":14,"unique":20,"cat":"日常","source":"famous","reference":"駅"},{"id":"A227","text":"恋に","buzz":24,"unique":4,"cat":"恋愛","source":"famous","reference":"恋におちて -Fall in love-"},{"id":"A228","text":"フレンズの","buzz":22,"unique":20,"cat":"日常","source":"famous","reference":"フレンズ"},{"id":"A229","text":"ダンシング・","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"ダンシング・オールナイト"},{"id":"A230","text":"悲しい","buzz":20,"unique":17,"cat":"日常","source":"famous","reference":"悲しい色やね"},{"id":"A231","text":"大阪で","buzz":23,"unique":15,"cat":"日常","source":"famous","reference":"大阪で生まれた女"},{"id":"A232","text":"そして","buzz":18,"unique":13,"cat":"日常","source":"famous","reference":"そして、神戸"},{"id":"A233","text":"瀬戸の","buzz":17,"unique":19,"cat":"日常","source":"famous","reference":"瀬戸の花嫁"},{"id":"A234","text":"また逢う","buzz":12,"unique":20,"cat":"日常","source":"famous","reference":"また逢う日まで"},{"id":"A235","text":"空に","buzz":18,"unique":13,"cat":"日常","source":"famous","reference":"空に太陽がある限り"},{"id":"A236","text":"ブルー・","buzz":13,"unique":13,"cat":"日常","source":"famous","reference":"ブルー・ライト・ヨコハマ"},{"id":"A237","text":"真赤な","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"真赤な太陽"},{"id":"A238","text":"恋の","buzz":30,"unique":6,"cat":"恋愛","source":"famous","reference":"恋の季節"},{"id":"A239","text":"学生街の","buzz":27,"unique":8,"cat":"青春","source":"famous","reference":"学生街の喫茶店"},{"id":"A240","text":"神田川の","buzz":13,"unique":15,"cat":"日常","source":"famous","reference":"神田川"},{"id":"A241","text":"岬","buzz":21,"unique":12,"cat":"日常","source":"famous","reference":"岬めぐり"},{"id":"A242","text":"なごり","buzz":13,"unique":15,"cat":"日常","source":"famous","reference":"なごり雪"},{"id":"A243","text":"心の","buzz":14,"unique":18,"cat":"日常","source":"famous","reference":"心の旅"},{"id":"A244","text":"贈る","buzz":16,"unique":16,"cat":"日常","source":"famous","reference":"贈る言葉"},{"id":"A245","text":"乾杯の","buzz":13,"unique":17,"cat":"日常","source":"famous","reference":"乾杯"},{"id":"A246","text":"昴","buzz":23,"unique":13,"cat":"日常","source":"famous","reference":"昴"},{"id":"A247","text":"チャンピオンの","buzz":15,"unique":20,"cat":"日常","source":"famous","reference":"チャンピオン"},{"id":"A248","text":"君の","buzz":30,"unique":8,"cat":"恋愛","source":"famous","reference":"君のひとみは10000ボルト"},{"id":"A249","text":"夢の","buzz":20,"unique":19,"cat":"日常","source":"famous","reference":"夢の途中"},{"id":"A250","text":"恋人も","buzz":30,"unique":9,"cat":"恋愛","source":"famous","reference":"恋人も濡れる街角"},{"id":"A251","text":"初恋の","buzz":26,"unique":9,"cat":"恋愛","source":"famous","reference":"初恋"},{"id":"A252","text":"待つわ","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"待つわ"},{"id":"A253","text":"まちぶせ","buzz":17,"unique":20,"cat":"日常","source":"famous","reference":"まちぶせ"},{"id":"A254","text":"恋人が","buzz":22,"unique":7,"cat":"恋愛","source":"famous","reference":"恋人がサンタクロース"},{"id":"A255","text":"守って","buzz":20,"unique":18,"cat":"日常","source":"famous","reference":"守ってあげたい"},{"id":"A256","text":"卒業","buzz":24,"unique":11,"cat":"青春","source":"famous","reference":"卒業写真"},{"id":"A257","text":"ルージュの","buzz":22,"unique":14,"cat":"日常","source":"famous","reference":"ルージュの伝言"},{"id":"A258","text":"やさしさに","buzz":19,"unique":18,"cat":"日常","source":"famous","reference":"やさしさに包まれたなら"},{"id":"A259","text":"中央","buzz":15,"unique":15,"cat":"日常","source":"famous","reference":"中央フリーウェイ"},{"id":"A260","text":"春よ、","buzz":26,"unique":5,"cat":"季節","source":"famous","reference":"春よ、来い"},{"id":"A261","text":"Hello,","buzz":26,"unique":11,"cat":"英語","source":"famous","reference":"Hello, my friend"},{"id":"A262","text":"リフレインが","buzz":22,"unique":14,"cat":"日常","source":"famous","reference":"リフレインが叫んでる"},{"id":"A263","text":"I LOVE","buzz":26,"unique":15,"cat":"英語","source":"famous","reference":"I LOVE YOU"},{"id":"A264","text":"OH MY","buzz":16,"unique":20,"cat":"日常","source":"famous","reference":"OH MY LITTLE GIRL"},{"id":"A265","text":"卒業の","buzz":30,"unique":8,"cat":"青春","source":"famous","reference":"卒業"},{"id":"A266","text":"15の","buzz":16,"unique":16,"cat":"日常","source":"famous","reference":"15の夜"},{"id":"A267","text":"僕が僕で","buzz":18,"unique":15,"cat":"日常","source":"famous","reference":"僕が僕であるために"},{"id":"A268","text":"シェリーの","buzz":21,"unique":20,"cat":"日常","source":"famous","reference":"シェリー"},{"id":"A269","text":"TRAIN-","buzz":30,"unique":10,"cat":"英語","source":"famous","reference":"TRAIN-TRAIN"},{"id":"A270","text":"リンダ","buzz":13,"unique":14,"cat":"日常","source":"famous","reference":"リンダ リンダ"},{"id":"A271","text":"1000の","buzz":20,"unique":18,"cat":"日常","source":"famous","reference":"1000のバイオリン"},{"id":"A272","text":"どんなときも。","buzz":19,"unique":16,"cat":"日常","source":"famous","reference":"どんなときも。"},{"id":"A273","text":"もう恋なんて","buzz":26,"unique":11,"cat":"恋愛","source":"famous","reference":"もう恋なんてしない"},{"id":"A274","text":"遠く","buzz":21,"unique":14,"cat":"日常","source":"famous","reference":"遠く遠く"},{"id":"A275","text":"夜空ノ","buzz":23,"unique":14,"cat":"夜","source":"famous","reference":"夜空ノムコウ"},{"id":"A276","text":"らいおん","buzz":20,"unique":16,"cat":"日常","source":"famous","reference":"らいおんハート"},{"id":"A277","text":"SHAKE","buzz":17,"unique":16,"cat":"日常","source":"famous","reference":"SHAKE"},{"id":"A278","text":"オリジナル","buzz":19,"unique":17,"cat":"日常","source":"famous","reference":"オリジナル スマイル"},{"id":"A279","text":"負けないで","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"負けないで"},{"id":"A280","text":"揺れる","buzz":17,"unique":14,"cat":"日常","source":"famous","reference":"揺れる想い"},{"id":"A281","text":"マイ","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"マイ フレンド"},{"id":"A282","text":"愛が","buzz":29,"unique":6,"cat":"恋愛","source":"famous","reference":"愛が見えない"},{"id":"A283","text":"ロマンスの","buzz":30,"unique":9,"cat":"恋愛","source":"famous","reference":"ロマンスの神様"},{"id":"A284","text":"ゲレンデが","buzz":17,"unique":17,"cat":"日常","source":"famous","reference":"ゲレンデがとけるほど恋したい"},{"id":"A285","text":"DEPARTURES","buzz":27,"unique":11,"cat":"英語","source":"famous","reference":"DEPARTURES"},{"id":"A286","text":"FACE","buzz":26,"unique":15,"cat":"英語","source":"famous","reference":"FACE"},{"id":"A287","text":"CAN YOU","buzz":27,"unique":12,"cat":"英語","source":"famous","reference":"CAN YOU CELEBRATE?"},{"id":"A288","text":"Time","buzz":28,"unique":13,"cat":"英語","source":"famous","reference":"Time goes by"},{"id":"A289","text":"fragileな","buzz":21,"unique":15,"cat":"英語","source":"famous","reference":"fragile"},{"id":"A290","text":"Dear","buzz":23,"unique":14,"cat":"英語","source":"famous","reference":"Dear My Friend"},{"id":"A291","text":"LOVE LOVE","buzz":28,"unique":14,"cat":"英語","source":"famous","reference":"LOVE LOVE LOVE"},{"id":"A292","text":"未来","buzz":28,"unique":7,"cat":"人生","source":"famous","reference":"未来予想図Ⅱ"},{"id":"A293","text":"決戦は","buzz":15,"unique":13,"cat":"日常","source":"famous","reference":"決戦は金曜日"},{"id":"A294","text":"何度でも","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"何度でも"},{"id":"A295","text":"晴れたら","buzz":15,"unique":18,"cat":"日常","source":"famous","reference":"晴れたらいいね"},{"id":"A296","text":"innocent","buzz":20,"unique":11,"cat":"英語","source":"famous","reference":"innocent world"},{"id":"A297","text":"Tomorrow","buzz":22,"unique":16,"cat":"英語","source":"famous","reference":"Tomorrow never knows"},{"id":"A298","text":"名もなき","buzz":16,"unique":19,"cat":"日常","source":"famous","reference":"名もなき詩"},{"id":"A299","text":"終わりなき","buzz":14,"unique":18,"cat":"日常","source":"famous","reference":"終わりなき旅"},{"id":"A300","text":"シーソー","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"シーソーゲーム"},{"id":"A301","text":"HANABIの","buzz":23,"unique":15,"cat":"英語","source":"famous","reference":"HANABI"},{"id":"A302","text":"チェリーの","buzz":14,"unique":20,"cat":"日常","source":"famous","reference":"チェリー"},{"id":"A303","text":"空も","buzz":18,"unique":12,"cat":"日常","source":"famous","reference":"空も飛べるはず"},{"id":"A304","text":"ロビンソンの","buzz":14,"unique":14,"cat":"日常","source":"famous","reference":"ロビンソン"},{"id":"A305","text":"楓の","buzz":17,"unique":14,"cat":"日常","source":"famous","reference":"楓"},{"id":"A306","text":"涙が","buzz":23,"unique":6,"cat":"恋愛","source":"famous","reference":"涙がキラリ☆"},{"id":"A307","text":"渚に","buzz":18,"unique":20,"cat":"日常","source":"famous","reference":"渚にまつわるエトセトラ"},{"id":"A308","text":"これが私の","buzz":20,"unique":14,"cat":"日常","source":"famous","reference":"これが私の生きる道"},{"id":"A309","text":"アジアの","buzz":19,"unique":19,"cat":"日常","source":"famous","reference":"アジアの純真"},{"id":"A310","text":"Automaticな","buzz":24,"unique":16,"cat":"英語","source":"famous","reference":"Automatic"},{"id":"A311","text":"First","buzz":23,"unique":10,"cat":"英語","source":"famous","reference":"First Love"},{"id":"A312","text":"traveling","buzz":27,"unique":12,"cat":"英語","source":"famous","reference":"traveling"},{"id":"A313","text":"Flavor Of","buzz":24,"unique":12,"cat":"英語","source":"famous","reference":"Flavor Of Life"},{"id":"A314","text":"花束を","buzz":30,"unique":6,"cat":"恋愛","source":"famous","reference":"花束を君に"},{"id":"A315","text":"桜坂の","buzz":29,"unique":10,"cat":"季節","source":"famous","reference":"桜坂"},{"id":"A316","text":"家族に","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"家族になろうよ"},{"id":"A317","text":"虹の","buzz":30,"unique":6,"cat":"季節","source":"famous","reference":"虹"},{"id":"A318","text":"HELLOの","buzz":22,"unique":11,"cat":"英語","source":"famous","reference":"HELLO"},{"id":"A319","text":"TSUNAMIの","buzz":12,"unique":15,"cat":"日常","source":"famous","reference":"TSUNAMI"},{"id":"A320","text":"いとしの","buzz":14,"unique":14,"cat":"日常","source":"famous","reference":"いとしのエリー"},{"id":"A321","text":"希望の","buzz":30,"unique":11,"cat":"人生","source":"famous","reference":"希望の轍"},{"id":"A322","text":"波乗り","buzz":15,"unique":14,"cat":"日常","source":"famous","reference":"波乗りジョニー"},{"id":"A323","text":"少年","buzz":24,"unique":8,"cat":"青春","source":"famous","reference":"少年時代"},{"id":"A324","text":"リバーサイド","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"リバーサイド ホテル"},{"id":"A325","text":"飾りじゃない","buzz":19,"unique":13,"cat":"日常","source":"famous","reference":"飾りじゃないのよ涙は"},{"id":"A326","text":"レイニー","buzz":15,"unique":15,"cat":"日常","source":"famous","reference":"レイニー ブルー"},{"id":"A327","text":"輝きながら","buzz":13,"unique":17,"cat":"日常","source":"famous","reference":"輝きながら…"},{"id":"A328","text":"時代の","buzz":25,"unique":12,"cat":"人生","source":"famous","reference":"時代"},{"id":"A329","text":"糸の","buzz":30,"unique":10,"cat":"人生","source":"famous","reference":"糸"},{"id":"A330","text":"地上の","buzz":18,"unique":16,"cat":"日常","source":"famous","reference":"地上の星"},{"id":"A331","text":"空と君の","buzz":26,"unique":7,"cat":"恋愛","source":"famous","reference":"空と君のあいだに"},{"id":"A332","text":"ファイト！","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"ファイト！"},{"id":"A333","text":"悪女の","buzz":16,"unique":12,"cat":"日常","source":"famous","reference":"悪女"},{"id":"A334","text":"浅い","buzz":13,"unique":18,"cat":"日常","source":"famous","reference":"浅い眠り"},{"id":"A335","text":"誕生の","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"誕生"},{"id":"A336","text":"悲しみに","buzz":19,"unique":17,"cat":"日常","source":"famous","reference":"悲しみにさよなら"},{"id":"A337","text":"田園の","buzz":17,"unique":14,"cat":"日常","source":"famous","reference":"田園"},{"id":"A338","text":"メロディーの","buzz":22,"unique":15,"cat":"日常","source":"famous","reference":"メロディー"},{"id":"A339","text":"夏の","buzz":28,"unique":8,"cat":"季節","source":"famous","reference":"夏の終りのハーモニー"},{"id":"A340","text":"接吻の","buzz":21,"unique":18,"cat":"日常","source":"famous","reference":"接吻"},{"id":"A341","text":"今夜は","buzz":26,"unique":11,"cat":"夜","source":"famous","reference":"今夜はブギー・バック"},{"id":"A342","text":"ラブリーな","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"ラブリー"},{"id":"A343","text":"強く","buzz":12,"unique":16,"cat":"日常","source":"famous","reference":"強く儚い者たち"},{"id":"A344","text":"カブトムシの","buzz":20,"unique":19,"cat":"日常","source":"famous","reference":"カブトムシ"},{"id":"A345","text":"ボーイフレンドの","buzz":30,"unique":9,"cat":"恋愛","source":"famous","reference":"ボーイフレンド"},{"id":"A346","text":"花火の","buzz":29,"unique":10,"cat":"季節","source":"famous","reference":"花火"},{"id":"A347","text":"三日月の","buzz":27,"unique":11,"cat":"夜","source":"famous","reference":"三日月"},{"id":"A348","text":"Storyの","buzz":20,"unique":19,"cat":"日常","source":"famous","reference":"Story"},{"id":"A349","text":"ハピネスの","buzz":17,"unique":16,"cat":"日常","source":"famous","reference":"ハピネス"},{"id":"A350","text":"キセキの","buzz":19,"unique":18,"cat":"日常","source":"famous","reference":"キセキ"},{"id":"A351","text":"愛唄を","buzz":30,"unique":6,"cat":"恋愛","source":"famous","reference":"愛唄"},{"id":"A352","text":"遥か","buzz":14,"unique":15,"cat":"日常","source":"famous","reference":"遥か"},{"id":"A353","text":"蕾の","buzz":15,"unique":14,"cat":"日常","source":"famous","reference":"蕾"},{"id":"A354","text":"ここにしか","buzz":19,"unique":20,"cat":"日常","source":"famous","reference":"ここにしか咲かない花"},{"id":"A355","text":"桜の","buzz":28,"unique":13,"cat":"季節","source":"famous","reference":"桜の花びらたち"},{"id":"A356","text":"会いたかった","buzz":16,"unique":14,"cat":"日常","source":"famous","reference":"会いたかった"},{"id":"A357","text":"ヘビーローテーションの","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"ヘビーローテーション"},{"id":"A358","text":"365日の","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"365日の紙飛行機"},{"id":"A359","text":"フライング","buzz":15,"unique":17,"cat":"日常","source":"famous","reference":"フライングゲット"},{"id":"A360","text":"ポニーテールと","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"ポニーテールとシュシュ"},{"id":"A361","text":"Everyday、","buzz":18,"unique":20,"cat":"日常","source":"famous","reference":"Everyday、カチューシャ"},{"id":"A362","text":"サイレント","buzz":19,"unique":18,"cat":"日常","source":"famous","reference":"サイレントマジョリティー"},{"id":"A363","text":"不協和音の","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"不協和音"},{"id":"A364","text":"二人","buzz":19,"unique":13,"cat":"日常","source":"famous","reference":"二人セゾン"},{"id":"A365","text":"インフルエンサーの","buzz":21,"unique":19,"cat":"日常","source":"famous","reference":"インフルエンサー"},{"id":"A366","text":"シンクロニシティの","buzz":21,"unique":15,"cat":"日常","source":"famous","reference":"シンクロニシティ"},{"id":"A367","text":"裸足で","buzz":21,"unique":14,"cat":"日常","source":"famous","reference":"裸足でSummer"},{"id":"A368","text":"マリーゴールドの","buzz":24,"unique":8,"cat":"季節","source":"famous","reference":"マリーゴールド"},{"id":"A369","text":"君は","buzz":28,"unique":3,"cat":"恋愛","source":"famous","reference":"君はロックを聴かない"},{"id":"A370","text":"ハルノ","buzz":13,"unique":18,"cat":"日常","source":"famous","reference":"ハルノヒ"},{"id":"A371","text":"裸の","buzz":19,"unique":16,"cat":"日常","source":"famous","reference":"裸の心"},{"id":"A372","text":"猫の","buzz":14,"unique":15,"cat":"日常","source":"famous","reference":"猫"},{"id":"A373","text":"ドライ","buzz":17,"unique":16,"cat":"日常","source":"famous","reference":"ドライフラワー"},{"id":"A374","text":"ベテルギウスの","buzz":30,"unique":14,"cat":"夜","source":"famous","reference":"ベテルギウス"},{"id":"A375","text":"怪獣の","buzz":23,"unique":18,"cat":"不思議","source":"famous","reference":"怪獣の花唄"},{"id":"A376","text":"水平線の","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"水平線"},{"id":"A377","text":"高嶺の","buzz":20,"unique":19,"cat":"日常","source":"famous","reference":"高嶺の花子さん"},{"id":"A378","text":"クリスマス","buzz":20,"unique":20,"cat":"日常","source":"famous","reference":"クリスマスソング"},{"id":"A379","text":"ヒロインの","buzz":16,"unique":16,"cat":"日常","source":"famous","reference":"ヒロイン"},{"id":"A380","text":"新宝島の","buzz":20,"unique":16,"cat":"日常","source":"famous","reference":"新宝島"},{"id":"A381","text":"前前前世の","buzz":22,"unique":14,"cat":"日常","source":"famous","reference":"前前前世"},{"id":"A382","text":"スパークルの","buzz":13,"unique":14,"cat":"日常","source":"famous","reference":"スパークル"},{"id":"A383","text":"なんでもない","buzz":17,"unique":14,"cat":"日常","source":"famous","reference":"なんでもないや"},{"id":"A384","text":"愛に","buzz":28,"unique":5,"cat":"恋愛","source":"famous","reference":"愛にできることはまだあるかい"},{"id":"A385","text":"紅蓮華の","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"紅蓮華"},{"id":"A386","text":"炎の","buzz":16,"unique":17,"cat":"日常","source":"famous","reference":"炎"},{"id":"A387","text":"残響","buzz":22,"unique":19,"cat":"日常","source":"famous","reference":"残響散歌"},{"id":"A388","text":"アイドルの","buzz":30,"unique":11,"cat":"キラキラ","source":"famous","reference":"アイドル"},{"id":"A389","text":"夜に","buzz":25,"unique":14,"cat":"夜","source":"famous","reference":"夜に駆ける"},{"id":"A390","text":"怪物の","buzz":25,"unique":16,"cat":"不思議","source":"famous","reference":"怪物"},{"id":"A391","text":"ハルジオンの","buzz":16,"unique":16,"cat":"日常","source":"famous","reference":"ハルジオン"},{"id":"A392","text":"Pretenderの","buzz":21,"unique":13,"cat":"英語","source":"famous","reference":"Pretender"},{"id":"A393","text":"宿命の","buzz":16,"unique":20,"cat":"日常","source":"famous","reference":"宿命"},{"id":"A394","text":"115万キロの","buzz":21,"unique":19,"cat":"日常","source":"famous","reference":"115万キロのフィルム"},{"id":"A395","text":"ミックスナッツの","buzz":21,"unique":13,"cat":"日常","source":"famous","reference":"ミックスナッツ"},{"id":"A396","text":"Subtitleの","buzz":21,"unique":15,"cat":"英語","source":"famous","reference":"Subtitle"},{"id":"A397","text":"Lemonの","buzz":18,"unique":19,"cat":"日常","source":"famous","reference":"Lemon"},{"id":"A398","text":"感電の","buzz":20,"unique":16,"cat":"日常","source":"famous","reference":"感電"},{"id":"A399","text":"馬と","buzz":21,"unique":17,"cat":"日常","source":"famous","reference":"馬と鹿"},{"id":"A400","text":"KICK BACKの","buzz":28,"unique":13,"cat":"反抗","source":"famous","reference":"KICK BACK"},{"id":"A401","text":"打上","buzz":19,"unique":13,"cat":"日常","source":"famous","reference":"打上花火"},{"id":"A402","text":"まちがいさがしの","buzz":13,"unique":19,"cat":"日常","source":"famous","reference":"まちがいさがし"},{"id":"A403","text":"白日","buzz":21,"unique":11,"cat":"夜","source":"famous","reference":"白日"},{"id":"A404","text":"一途な","buzz":22,"unique":16,"cat":"日常","source":"famous","reference":"一途"},{"id":"A405","text":"逆夢の","buzz":14,"unique":14,"cat":"日常","source":"famous","reference":"逆夢"},{"id":"A406","text":"Teenager","buzz":14,"unique":19,"cat":"日常","source":"famous","reference":"Teenager Forever"},{"id":"A407","text":"香水の","buzz":17,"unique":12,"cat":"日常","source":"famous","reference":"香水"},{"id":"A408","text":"うっせぇ","buzz":25,"unique":15,"cat":"反抗","source":"famous","reference":"うっせぇわ"},{"id":"A409","text":"新時代の","buzz":20,"unique":17,"cat":"不思議","source":"famous","reference":"新時代"},{"id":"A410","text":"唱える","buzz":16,"unique":19,"cat":"日常","source":"famous","reference":"唱"},{"id":"A411","text":"私は","buzz":19,"unique":13,"cat":"日常","source":"famous","reference":"私は最強"},{"id":"A412","text":"Habitの","buzz":21,"unique":14,"cat":"英語","source":"famous","reference":"Habit"},{"id":"A413","text":"RPGの","buzz":21,"unique":13,"cat":"英語","source":"famous","reference":"RPG"},{"id":"A414","text":"スター","buzz":14,"unique":18,"cat":"日常","source":"famous","reference":"スターライトパレード"},{"id":"A415","text":"天体","buzz":11,"unique":18,"cat":"日常","source":"famous","reference":"天体観測"},{"id":"A416","text":"小さな","buzz":22,"unique":16,"cat":"日常","source":"famous","reference":"小さな恋のうた"},{"id":"A417","text":"あなたに","buzz":30,"unique":8,"cat":"恋愛","source":"famous","reference":"あなたに"},{"id":"A418","text":"奏でる","buzz":21,"unique":18,"cat":"日常","source":"famous","reference":"奏"},{"id":"A419","text":"全力","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"全力少年"},{"id":"A420","text":"ボクノートの","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"ボクノート"},{"id":"A421","text":"ひまわりの","buzz":18,"unique":13,"cat":"日常","source":"famous","reference":"ひまわりの約束"},{"id":"A422","text":"未来へ","buzz":26,"unique":10,"cat":"人生","source":"famous","reference":"未来へ"},{"id":"A423","text":"Best Friend","buzz":18,"unique":20,"cat":"日常","source":"famous","reference":"Best Friend"},{"id":"A424","text":"366日の","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"366日"},{"id":"A425","text":"栄光の","buzz":15,"unique":14,"cat":"日常","source":"famous","reference":"栄光の架橋"},{"id":"A426","text":"夏色の","buzz":29,"unique":9,"cat":"季節","source":"famous","reference":"夏色"},{"id":"A427","text":"愛をこめて","buzz":29,"unique":6,"cat":"恋愛","source":"famous","reference":"愛をこめて花束を"},{"id":"A428","text":"タマシイ","buzz":15,"unique":15,"cat":"日常","source":"famous","reference":"タマシイレボリューション"},{"id":"A429","text":"Beautifulな","buzz":14,"unique":19,"cat":"日常","source":"famous","reference":"Beautiful"},{"id":"A430","text":"ありがとう","buzz":20,"unique":17,"cat":"日常","source":"famous","reference":"ありがとう"},{"id":"A431","text":"さくらの","buzz":16,"unique":12,"cat":"日常","source":"famous","reference":"さくら"},{"id":"A432","text":"道の","buzz":11,"unique":14,"cat":"日常","source":"famous","reference":"道"},{"id":"A433","text":"Ti Amoの","buzz":23,"unique":12,"cat":"英語","source":"famous","reference":"Ti Amo"},{"id":"A434","text":"Choo Choo","buzz":26,"unique":13,"cat":"英語","source":"famous","reference":"Choo Choo TRAIN"},{"id":"A435","text":"R.Y.U.S.E.I.の","buzz":20,"unique":13,"cat":"英語","source":"famous","reference":"R.Y.U.S.E.I."},{"id":"A436","text":"恋と","buzz":24,"unique":4,"cat":"恋愛","source":"famous","reference":"恋と愛"},{"id":"A437","text":"夕焼けに","buzz":20,"unique":10,"cat":"季節","source":"generic","reference":null},{"id":"A438","text":"朝露の","buzz":12,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A439","text":"黄昏の","buzz":6,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"A440","text":"午前四時の","buzz":7,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A441","text":"午前五時の","buzz":11,"unique":14,"cat":"日常","source":"generic","reference":null},{"id":"A442","text":"雨宿りの","buzz":15,"unique":12,"cat":"季節","source":"generic","reference":null},{"id":"A443","text":"風待ちの","buzz":16,"unique":13,"cat":"季節","source":"generic","reference":null},{"id":"A444","text":"波打ち際の","buzz":13,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A445","text":"坂道の","buzz":9,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A446","text":"踏切の","buzz":10,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A447","text":"改札前の","buzz":7,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A448","text":"駅裏の","buzz":7,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A449","text":"屋根裏の","buzz":11,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A450","text":"地下室の","buzz":12,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"A451","text":"窓辺の","buzz":6,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"A452","text":"ベランダの","buzz":11,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"A453","text":"公園の","buzz":10,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A454","text":"屋台の","buzz":11,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A455","text":"喫茶店の","buzz":9,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A456","text":"レコード屋の","buzz":11,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A457","text":"海辺の","buzz":11,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A458","text":"山あいの","buzz":6,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A459","text":"川沿いの","buzz":8,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"A460","text":"湖畔の","buzz":5,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A461","text":"島の","buzz":13,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A462","text":"都会から","buzz":10,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A463","text":"故郷への","buzz":14,"unique":15,"cat":"和風","source":"generic","reference":null},{"id":"A464","text":"北国の","buzz":5,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A465","text":"南風の","buzz":22,"unique":11,"cat":"季節","source":"generic","reference":null},{"id":"A466","text":"東の空の","buzz":9,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"A467","text":"西日差す","buzz":5,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A468","text":"手のひらの","buzz":12,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A469","text":"ポケットの","buzz":5,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A470","text":"鞄の中の","buzz":9,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"A471","text":"机の上の","buzz":6,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"A472","text":"枕元の","buzz":10,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"A473","text":"鏡の中の","buzz":13,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A474","text":"写真の中の","buzz":9,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A475","text":"記憶の中の","buzz":11,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A476","text":"夢の中の","buzz":9,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A477","text":"眠れぬ","buzz":5,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A478","text":"泣きたい","buzz":6,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A479","text":"笑いたい","buzz":6,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A480","text":"帰りたい","buzz":11,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A481","text":"忘れたい","buzz":8,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A482","text":"伝えたい","buzz":13,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"A483","text":"届かない","buzz":11,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A484","text":"振り向かない","buzz":13,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"A485","text":"立ち止まらない","buzz":7,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A486","text":"諦めない","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A487","text":"雨粒の","buzz":14,"unique":11,"cat":"季節","source":"generic","reference":null},{"id":"A488","text":"雪解け水の","buzz":16,"unique":12,"cat":"季節","source":"generic","reference":null},{"id":"A489","text":"木漏れ日の","buzz":9,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"A490","text":"潮風の","buzz":19,"unique":8,"cat":"季節","source":"generic","reference":null},{"id":"A491","text":"春霞の","buzz":19,"unique":10,"cat":"季節","source":"generic","reference":null},{"id":"A492","text":"秋風の","buzz":15,"unique":12,"cat":"季節","source":"generic","reference":null},{"id":"A493","text":"夕凪の","buzz":9,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A494","text":"夜風の","buzz":17,"unique":14,"cat":"季節","source":"generic","reference":null},{"id":"A495","text":"北風の","buzz":18,"unique":10,"cat":"季節","source":"generic","reference":null},{"id":"A496","text":"南風に","buzz":17,"unique":8,"cat":"季節","source":"generic","reference":null},{"id":"A497","text":"ガラス越しの","buzz":6,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A498","text":"電話越しの","buzz":8,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"A499","text":"スクリーンの","buzz":10,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"A500","text":"ラジオから","buzz":11,"unique":16,"cat":"日常","source":"generic","reference":null}];
-const B=[{"id":"B001","text":"たいやきくん","buzz":25,"unique":10,"cat":"食べ物","source":"base","reference":null},{"id":"B002","text":"フォーチュンクッキー","buzz":25,"unique":20,"cat":"食べ物","source":"base","reference":null},{"id":"B003","text":"メモリー","buzz":14,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B004","text":"ラブソング","buzz":6,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B005","text":"ブルース","buzz":22,"unique":9,"cat":"夜","source":"base","reference":null},{"id":"B006","text":"エレベーター","buzz":9,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B007","text":"プリン","buzz":16,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B008","text":"ラーメン","buzz":17,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B009","text":"約束","buzz":26,"unique":11,"cat":"恋愛","source":"base","reference":null},{"id":"B010","text":"奇跡","buzz":20,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"B011","text":"青春","buzz":24,"unique":8,"cat":"季節","source":"base","reference":null},{"id":"B012","text":"反抗期","buzz":13,"unique":16,"cat":"反抗","source":"base","reference":null},{"id":"B013","text":"サマー","buzz":22,"unique":10,"cat":"季節","source":"base","reference":null},{"id":"B014","text":"スノー","buzz":20,"unique":10,"cat":"季節","source":"base","reference":null},{"id":"B015","text":"ムーン","buzz":10,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"B016","text":"ハート","buzz":18,"unique":5,"cat":"恋愛","source":"base","reference":null},{"id":"B017","text":"涙","buzz":17,"unique":5,"cat":"恋愛","source":"base","reference":null},{"id":"B018","text":"舟歌","buzz":15,"unique":14,"cat":"和風","source":"base","reference":null},{"id":"B019","text":"みちづれ","buzz":15,"unique":11,"cat":"和風","source":"base","reference":null},{"id":"B020","text":"夢","buzz":7,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B021","text":"カルボナーラ","buzz":14,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"B022","text":"温泉まんじゅう","buzz":16,"unique":14,"cat":"食べ物","source":"base","reference":null},{"id":"B023","text":"シンデレラ","buzz":14,"unique":14,"cat":"キラキラ","source":"base","reference":null},{"id":"B024","text":"スターライト","buzz":21,"unique":17,"cat":"キラキラ","source":"base","reference":null},{"id":"B025","text":"ロックンロール","buzz":7,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B026","text":"パーティー","buzz":6,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B027","text":"デイズ","buzz":7,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B028","text":"放課後","buzz":18,"unique":9,"cat":"青春","source":"base","reference":null},{"id":"B029","text":"日記","buzz":10,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B030","text":"伝説","buzz":8,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B031","text":"花吹雪","buzz":14,"unique":8,"cat":"季節","source":"base","reference":null},{"id":"B032","text":"海峡","buzz":21,"unique":11,"cat":"和風","source":"base","reference":null},{"id":"B033","text":"レモネード","buzz":10,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B034","text":"ジャーニー","buzz":8,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B035","text":"ショコラ","buzz":16,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B036","text":"ロマンス","buzz":23,"unique":11,"cat":"恋愛","source":"base","reference":null},{"id":"B037","text":"キャンディ","buzz":13,"unique":19,"cat":"食べ物","source":"base","reference":null},{"id":"B038","text":"ラビリンス","buzz":6,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B039","text":"ミステリー","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B040","text":"革命","buzz":18,"unique":11,"cat":"反抗","source":"base","reference":null},{"id":"B041","text":"ナイト","buzz":20,"unique":11,"cat":"夜","source":"base","reference":null},{"id":"B042","text":"サンセット","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B043","text":"ステップ","buzz":10,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B044","text":"メロディ","buzz":10,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B045","text":"恋","buzz":21,"unique":9,"cat":"恋愛","source":"base","reference":null},{"id":"B046","text":"こころ","buzz":6,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B047","text":"弁当","buzz":13,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B048","text":"告白","buzz":24,"unique":7,"cat":"恋愛","source":"base","reference":null},{"id":"B049","text":"花火","buzz":21,"unique":13,"cat":"季節","source":"base","reference":null},{"id":"B050","text":"銀河","buzz":10,"unique":16,"cat":"不思議","source":"base","reference":null},{"id":"B051","text":"月あかり","buzz":20,"unique":12,"cat":"夜","source":"base","reference":null},{"id":"B052","text":"酒場","buzz":13,"unique":15,"cat":"和風","source":"base","reference":null},{"id":"B053","text":"ダイヤモンド","buzz":13,"unique":14,"cat":"キラキラ","source":"base","reference":null},{"id":"B054","text":"エモーション","buzz":10,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B055","text":"スマイル","buzz":11,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B056","text":"カレー","buzz":12,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B057","text":"青春譜","buzz":18,"unique":11,"cat":"季節","source":"base","reference":null},{"id":"B058","text":"夜行列車","buzz":15,"unique":10,"cat":"夜","source":"base","reference":null},{"id":"B059","text":"天気雨","buzz":16,"unique":7,"cat":"季節","source":"base","reference":null},{"id":"B060","text":"マシュマロ","buzz":18,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B061","text":"コーヒー","buzz":12,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B062","text":"クリームソーダ","buzz":17,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B063","text":"ハンバーグ","buzz":12,"unique":15,"cat":"食べ物","source":"base","reference":null},{"id":"B064","text":"オムライス","buzz":18,"unique":15,"cat":"食べ物","source":"base","reference":null},{"id":"B065","text":"チャーハン","buzz":12,"unique":14,"cat":"食べ物","source":"base","reference":null},{"id":"B066","text":"餃子","buzz":14,"unique":14,"cat":"食べ物","source":"base","reference":null},{"id":"B067","text":"焼きそば","buzz":11,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B068","text":"たこ焼き","buzz":14,"unique":14,"cat":"食べ物","source":"base","reference":null},{"id":"B069","text":"おにぎり","buzz":14,"unique":17,"cat":"食べ物","source":"base","reference":null},{"id":"B070","text":"みそ汁","buzz":19,"unique":17,"cat":"食べ物","source":"base","reference":null},{"id":"B071","text":"トースト","buzz":11,"unique":17,"cat":"食べ物","source":"base","reference":null},{"id":"B072","text":"アイスクリーム","buzz":11,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"B073","text":"ドーナツ","buzz":10,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"B074","text":"パンケーキ","buzz":14,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B075","text":"チョコレート","buzz":11,"unique":15,"cat":"食べ物","source":"base","reference":null},{"id":"B076","text":"ポテト","buzz":10,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"B077","text":"からあげ","buzz":18,"unique":19,"cat":"食べ物","source":"base","reference":null},{"id":"B078","text":"メロンパン","buzz":16,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B079","text":"アップルパイ","buzz":16,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B080","text":"いちご","buzz":18,"unique":14,"cat":"食べ物","source":"base","reference":null},{"id":"B081","text":"バナナ","buzz":17,"unique":14,"cat":"食べ物","source":"base","reference":null},{"id":"B082","text":"スイカ","buzz":18,"unique":16,"cat":"食べ物","source":"base","reference":null},{"id":"B083","text":"みかん","buzz":11,"unique":19,"cat":"食べ物","source":"base","reference":null},{"id":"B084","text":"桃","buzz":12,"unique":15,"cat":"食べ物","source":"base","reference":null},{"id":"B085","text":"さくらんぼ","buzz":19,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B086","text":"レモン","buzz":16,"unique":18,"cat":"食べ物","source":"base","reference":null},{"id":"B087","text":"コーラ","buzz":16,"unique":19,"cat":"食べ物","source":"base","reference":null},{"id":"B088","text":"サイダー","buzz":18,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B089","text":"ミルクティー","buzz":14,"unique":19,"cat":"食べ物","source":"base","reference":null},{"id":"B090","text":"ラムネ","buzz":10,"unique":13,"cat":"食べ物","source":"base","reference":null},{"id":"B091","text":"傘","buzz":13,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B092","text":"長靴","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B093","text":"自転車","buzz":15,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B094","text":"信号","buzz":12,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"B095","text":"改札","buzz":10,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"B096","text":"ホーム","buzz":5,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B097","text":"切符","buzz":8,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B098","text":"バス停","buzz":11,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B099","text":"交差点","buzz":6,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B100","text":"歩道橋","buzz":13,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B101","text":"ベランダ","buzz":11,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B102","text":"屋上","buzz":7,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B103","text":"教室","buzz":23,"unique":7,"cat":"青春","source":"base","reference":null},{"id":"B104","text":"体育館","buzz":18,"unique":9,"cat":"青春","source":"base","reference":null},{"id":"B105","text":"廊下","buzz":17,"unique":12,"cat":"青春","source":"base","reference":null},{"id":"B106","text":"保健室","buzz":21,"unique":7,"cat":"青春","source":"base","reference":null},{"id":"B107","text":"図書室","buzz":20,"unique":10,"cat":"青春","source":"base","reference":null},{"id":"B108","text":"給食","buzz":21,"unique":9,"cat":"青春","source":"base","reference":null},{"id":"B109","text":"黒板","buzz":14,"unique":12,"cat":"青春","source":"base","reference":null},{"id":"B110","text":"チャイム","buzz":20,"unique":9,"cat":"青春","source":"base","reference":null},{"id":"B111","text":"制服","buzz":21,"unique":13,"cat":"青春","source":"base","reference":null},{"id":"B112","text":"スニーカー","buzz":9,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B113","text":"ランドセル","buzz":19,"unique":8,"cat":"青春","source":"base","reference":null},{"id":"B114","text":"手紙","buzz":14,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B115","text":"写真","buzz":9,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B116","text":"アルバム","buzz":10,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B117","text":"ノート","buzz":13,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B118","text":"鉛筆","buzz":5,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B119","text":"消しゴム","buzz":11,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B120","text":"スマホ","buzz":13,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"B121","text":"イヤホン","buzz":12,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B122","text":"リモコン","buzz":13,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B123","text":"冷蔵庫","buzz":8,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B124","text":"洗濯機","buzz":8,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B125","text":"目覚まし時計","buzz":9,"unique":14,"cat":"日常","source":"base","reference":null},{"id":"B126","text":"自販機","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B127","text":"コンビニ","buzz":10,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B128","text":"ファミレス","buzz":7,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B129","text":"カラオケ","buzz":12,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B130","text":"ゲームセンター","buzz":7,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B131","text":"ネオン","buzz":23,"unique":11,"cat":"夜","source":"base","reference":null},{"id":"B132","text":"夜景","buzz":23,"unique":11,"cat":"夜","source":"base","reference":null},{"id":"B133","text":"摩天楼","buzz":7,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B134","text":"路地裏","buzz":9,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B135","text":"商店街","buzz":6,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B136","text":"港町","buzz":17,"unique":9,"cat":"和風","source":"base","reference":null},{"id":"B137","text":"温泉街","buzz":7,"unique":20,"cat":"日常","source":"base","reference":null},{"id":"B138","text":"雪国","buzz":19,"unique":8,"cat":"季節","source":"base","reference":null},{"id":"B139","text":"故郷","buzz":19,"unique":11,"cat":"和風","source":"base","reference":null},{"id":"B140","text":"田園","buzz":10,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B141","text":"祭り","buzz":21,"unique":11,"cat":"和風","source":"base","reference":null},{"id":"B142","text":"花嫁","buzz":22,"unique":9,"cat":"恋愛","source":"base","reference":null},{"id":"B143","text":"振袖","buzz":17,"unique":15,"cat":"和風","source":"base","reference":null},{"id":"B144","text":"浴衣","buzz":20,"unique":11,"cat":"和風","source":"base","reference":null},{"id":"B145","text":"番傘","buzz":15,"unique":9,"cat":"和風","source":"base","reference":null},{"id":"B146","text":"提灯","buzz":17,"unique":9,"cat":"和風","source":"base","reference":null},{"id":"B147","text":"風鈴","buzz":21,"unique":11,"cat":"季節","source":"base","reference":null},{"id":"B148","text":"金魚","buzz":19,"unique":8,"cat":"季節","source":"base","reference":null},{"id":"B149","text":"桜","buzz":22,"unique":7,"cat":"季節","source":"base","reference":null},{"id":"B150","text":"紅葉","buzz":21,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"B151","text":"雪","buzz":22,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"B152","text":"雨","buzz":19,"unique":12,"cat":"季節","source":"base","reference":null},{"id":"B153","text":"風","buzz":16,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"B154","text":"雷","buzz":6,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B155","text":"虹","buzz":16,"unique":12,"cat":"季節","source":"base","reference":null},{"id":"B156","text":"雲","buzz":15,"unique":10,"cat":"季節","source":"base","reference":null},{"id":"B157","text":"星","buzz":21,"unique":14,"cat":"夜","source":"base","reference":null},{"id":"B158","text":"太陽","buzz":12,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B159","text":"月","buzz":14,"unique":15,"cat":"夜","source":"base","reference":null},{"id":"B160","text":"夕焼け","buzz":20,"unique":9,"cat":"季節","source":"base","reference":null},{"id":"B161","text":"朝焼け","buzz":16,"unique":10,"cat":"季節","source":"base","reference":null},{"id":"B162","text":"流星","buzz":21,"unique":9,"cat":"夜","source":"base","reference":null},{"id":"B163","text":"彗星","buzz":14,"unique":12,"cat":"夜","source":"base","reference":null},{"id":"B164","text":"宇宙船","buzz":11,"unique":14,"cat":"不思議","source":"base","reference":null},{"id":"B165","text":"タイムマシン","buzz":15,"unique":17,"cat":"不思議","source":"base","reference":null},{"id":"B166","text":"UFO","buzz":12,"unique":14,"cat":"不思議","source":"base","reference":null},{"id":"B167","text":"ロボット","buzz":9,"unique":17,"cat":"不思議","source":"base","reference":null},{"id":"B168","text":"透明人間","buzz":11,"unique":20,"cat":"不思議","source":"base","reference":null},{"id":"B169","text":"怪獣","buzz":13,"unique":20,"cat":"不思議","source":"base","reference":null},{"id":"B170","text":"幽霊","buzz":10,"unique":18,"cat":"不思議","source":"base","reference":null},{"id":"B171","text":"魔法","buzz":13,"unique":15,"cat":"不思議","source":"base","reference":null},{"id":"B172","text":"呪文","buzz":15,"unique":19,"cat":"不思議","source":"base","reference":null},{"id":"B173","text":"迷宮","buzz":14,"unique":17,"cat":"不思議","source":"base","reference":null},{"id":"B174","text":"秘密基地","buzz":15,"unique":17,"cat":"不思議","source":"base","reference":null},{"id":"B175","text":"宝物","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B176","text":"地図","buzz":14,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B177","text":"鍵","buzz":12,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B178","text":"扉","buzz":7,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"B179","text":"階段","buzz":13,"unique":16,"cat":"日常","source":"base","reference":null},{"id":"B180","text":"時計","buzz":6,"unique":18,"cat":"日常","source":"base","reference":null},{"id":"B181","text":"未来","buzz":24,"unique":9,"cat":"人生","source":"base","reference":null},{"id":"B182","text":"昨日","buzz":18,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"B183","text":"明日","buzz":19,"unique":9,"cat":"人生","source":"base","reference":null},{"id":"B184","text":"永遠","buzz":23,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"B185","text":"一瞬","buzz":11,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B186","text":"運命","buzz":20,"unique":9,"cat":"人生","source":"base","reference":null},{"id":"B187","text":"偶然","buzz":5,"unique":19,"cat":"日常","source":"base","reference":null},{"id":"B188","text":"人生","buzz":20,"unique":13,"cat":"人生","source":"base","reference":null},{"id":"B189","text":"別れ","buzz":17,"unique":13,"cat":"人生","source":"base","reference":null},{"id":"B190","text":"再会","buzz":25,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"B191","text":"勇気","buzz":8,"unique":15,"cat":"日常","source":"base","reference":null},{"id":"B192","text":"希望","buzz":22,"unique":13,"cat":"人生","source":"base","reference":null},{"id":"B193","text":"絶望","buzz":24,"unique":11,"cat":"人生","source":"base","reference":null},{"id":"B194","text":"自由","buzz":15,"unique":17,"cat":"日常","source":"base","reference":null},{"id":"B195","text":"孤独","buzz":23,"unique":13,"cat":"人生","source":"base","reference":null},{"id":"B196","text":"幸福","buzz":21,"unique":8,"cat":"人生","source":"base","reference":null},{"id":"B197","text":"後悔","buzz":22,"unique":9,"cat":"人生","source":"base","reference":null},{"id":"B198","text":"決意","buzz":18,"unique":12,"cat":"人生","source":"base","reference":null},{"id":"B199","text":"冒険","buzz":22,"unique":7,"cat":"人生","source":"base","reference":null},{"id":"B200","text":"帰り道","buzz":22,"unique":11,"cat":"人生","source":"base","reference":null},{"id":"B201","text":"しやがれ","buzz":12,"unique":13,"cat":"日常","source":"famous","reference":"勝手にしやがれ"},{"id":"B202","text":"歩こう","buzz":15,"unique":13,"cat":"日常","source":"famous","reference":"上を向いて歩こう"},{"id":"B203","text":"夜の星を","buzz":25,"unique":9,"cat":"夜","source":"famous","reference":"見上げてごらん夜の星を"},{"id":"B204","text":"ように","buzz":14,"unique":18,"cat":"日常","source":"famous","reference":"川の流れのように"},{"id":"B205","text":"と","buzz":12,"unique":18,"cat":"日常","source":"famous","reference":"愛燦燦"},{"id":"B206","text":"冬景色","buzz":26,"unique":10,"cat":"季節","source":"famous","reference":"津軽海峡・冬景色"},{"id":"B207","text":"越え","buzz":15,"unique":18,"cat":"日常","source":"famous","reference":"天城越え"},{"id":"B208","text":"唄","buzz":13,"unique":15,"cat":"日常","source":"famous","reference":"舟唄"},{"id":"B209","text":"宿から","buzz":18,"unique":13,"cat":"日常","source":"famous","reference":"北の宿から"},{"id":"B210","text":"夜","buzz":23,"unique":12,"cat":"夜","source":"famous","reference":"喝采"},{"id":"B211","text":"流れに身をまかせ","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"時の流れに身をまかせ"},{"id":"B212","text":"旅立ち","buzz":19,"unique":17,"cat":"日常","source":"famous","reference":"いい日旅立ち"},{"id":"B213","text":"ころ","buzz":22,"unique":13,"cat":"日常","source":"famous","reference":"秋桜"},{"id":"B214","text":"Part2","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"プレイバックPart2"},{"id":"B215","text":"指環","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"ルビーの指環"},{"id":"B216","text":"街","buzz":22,"unique":14,"cat":"日常","source":"famous","reference":"異邦人"},{"id":"B217","text":"ハンカチーフ","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"木綿のハンカチーフ"},{"id":"B218","text":"珊瑚礁","buzz":11,"unique":15,"cat":"日常","source":"famous","reference":"青い珊瑚礁"},{"id":"B219","text":"スイートピー","buzz":14,"unique":13,"cat":"日常","source":"famous","reference":"赤いスイートピー"},{"id":"B220","text":"MEMORIES","buzz":21,"unique":20,"cat":"日常","source":"famous","reference":"SWEET MEMORIES"},{"id":"B221","text":"涙は","buzz":25,"unique":5,"cat":"恋愛","source":"famous","reference":"飾りじゃないのよ涙は"},{"id":"B222","text":"情熱","buzz":16,"unique":19,"cat":"日常","source":"famous","reference":"DESIRE -情熱-"},{"id":"B223","text":"A","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"少女A"},{"id":"B224","text":"機関銃","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"セーラー服と機関銃"},{"id":"B225","text":"ピアノが弾けたなら","buzz":15,"unique":17,"cat":"日常","source":"famous","reference":"もしもピアノが弾けたなら"},{"id":"B226","text":"心","buzz":21,"unique":15,"cat":"日常","source":"famous","reference":"ワインレッドの心"},{"id":"B227","text":"もう一度","buzz":16,"unique":14,"cat":"日常","source":"famous","reference":"恋人よ"},{"id":"B228","text":"おちて","buzz":21,"unique":15,"cat":"日常","source":"famous","reference":"恋におちて -Fall in love-"},{"id":"B229","text":"オールナイト","buzz":24,"unique":9,"cat":"夜","source":"famous","reference":"ダンシング・オールナイト"},{"id":"B230","text":"色やね","buzz":18,"unique":18,"cat":"日常","source":"famous","reference":"悲しい色やね"},{"id":"B231","text":"生まれた女","buzz":16,"unique":16,"cat":"日常","source":"famous","reference":"大阪で生まれた女"},{"id":"B232","text":"神戸","buzz":18,"unique":18,"cat":"日常","source":"famous","reference":"そして、神戸"},{"id":"B233","text":"日まで","buzz":14,"unique":15,"cat":"日常","source":"famous","reference":"また逢う日まで"},{"id":"B234","text":"太陽がある限り","buzz":17,"unique":17,"cat":"日常","source":"famous","reference":"空に太陽がある限り"},{"id":"B235","text":"ライト・ヨコハマ","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"ブルー・ライト・ヨコハマ"},{"id":"B236","text":"季節","buzz":18,"unique":14,"cat":"日常","source":"famous","reference":"恋の季節"},{"id":"B237","text":"スキャット","buzz":14,"unique":18,"cat":"日常","source":"famous","reference":"夜明けのスキャット"},{"id":"B238","text":"喫茶店","buzz":21,"unique":16,"cat":"日常","source":"famous","reference":"学生街の喫茶店"},{"id":"B239","text":"ほとり","buzz":20,"unique":13,"cat":"日常","source":"famous","reference":"神田川"},{"id":"B240","text":"めぐり","buzz":13,"unique":18,"cat":"日常","source":"famous","reference":"岬めぐり"},{"id":"B241","text":"旅","buzz":11,"unique":13,"cat":"日常","source":"famous","reference":"心の旅"},{"id":"B242","text":"影","buzz":19,"unique":14,"cat":"日常","source":"famous","reference":"青春の影"},{"id":"B243","text":"言葉","buzz":15,"unique":15,"cat":"日常","source":"famous","reference":"贈る言葉"},{"id":"B244","text":"すばる","buzz":16,"unique":14,"cat":"日常","source":"famous","reference":"昴"},{"id":"B245","text":"拳","buzz":19,"unique":17,"cat":"日常","source":"famous","reference":"チャンピオン"},{"id":"B246","text":"稲妻","buzz":18,"unique":18,"cat":"日常","source":"famous","reference":"冬の稲妻"},{"id":"B247","text":"ひとみは10000ボルト","buzz":14,"unique":18,"cat":"日常","source":"famous","reference":"君のひとみは10000ボルト"},{"id":"B248","text":"途中","buzz":16,"unique":17,"cat":"日常","source":"famous","reference":"夢の途中"},{"id":"B249","text":"濡れる街角","buzz":12,"unique":19,"cat":"日常","source":"famous","reference":"恋人も濡れる街角"},{"id":"B250","text":"いつまでも","buzz":16,"unique":12,"cat":"日常","source":"famous","reference":"待つわ"},{"id":"B251","text":"サンタクロース","buzz":18,"unique":14,"cat":"日常","source":"famous","reference":"恋人がサンタクロース"},{"id":"B252","text":"あげたい","buzz":15,"unique":16,"cat":"日常","source":"famous","reference":"守ってあげたい"},{"id":"B253","text":"伝言","buzz":16,"unique":14,"cat":"日常","source":"famous","reference":"ルージュの伝言"},{"id":"B254","text":"包まれたなら","buzz":20,"unique":18,"cat":"日常","source":"famous","reference":"やさしさに包まれたなら"},{"id":"B255","text":"フリーウェイ","buzz":18,"unique":20,"cat":"日常","source":"famous","reference":"中央フリーウェイ"},{"id":"B256","text":"来い","buzz":21,"unique":19,"cat":"日常","source":"famous","reference":"春よ、来い"},{"id":"B257","text":"夜の夢","buzz":21,"unique":10,"cat":"夜","source":"famous","reference":"真夏の夜の夢"},{"id":"B258","text":"my friend","buzz":15,"unique":13,"cat":"日常","source":"famous","reference":"Hello, my friend"},{"id":"B259","text":"叫んでる","buzz":12,"unique":15,"cat":"日常","source":"famous","reference":"リフレインが叫んでる"},{"id":"B260","text":"遠い昔","buzz":15,"unique":14,"cat":"日常","source":"famous","reference":"恋人よ"},{"id":"B261","text":"YOU","buzz":16,"unique":14,"cat":"日常","source":"famous","reference":"I LOVE YOU"},{"id":"B262","text":"LITTLE GIRL","buzz":16,"unique":19,"cat":"日常","source":"famous","reference":"OH MY LITTLE GIRL"},{"id":"B263","text":"朝","buzz":13,"unique":15,"cat":"日常","source":"famous","reference":"卒業"},{"id":"B264","text":"あるために","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"僕が僕であるために"},{"id":"B265","text":"TRAIN","buzz":23,"unique":14,"cat":"英語","source":"famous","reference":"TRAIN-TRAIN"},{"id":"B266","text":"リンダ","buzz":15,"unique":19,"cat":"日常","source":"famous","reference":"リンダ リンダ"},{"id":"B267","text":"薔薇","buzz":19,"unique":13,"cat":"日常","source":"famous","reference":"情熱の薔薇"},{"id":"B268","text":"バイオリン","buzz":19,"unique":14,"cat":"日常","source":"famous","reference":"1000のバイオリン"},{"id":"B269","text":"歌","buzz":22,"unique":17,"cat":"日常","source":"famous","reference":"終わらない歌"},{"id":"B270","text":"君と","buzz":23,"unique":4,"cat":"恋愛","source":"famous","reference":"どんなときも。"},{"id":"B271","text":"しない","buzz":20,"unique":20,"cat":"日常","source":"famous","reference":"もう恋なんてしない"},{"id":"B272","text":"遠く","buzz":20,"unique":19,"cat":"日常","source":"famous","reference":"遠く遠く"},{"id":"B273","text":"花","buzz":18,"unique":17,"cat":"日常","source":"famous","reference":"世界に一つだけの花"},{"id":"B274","text":"ムコウ","buzz":16,"unique":19,"cat":"日常","source":"famous","reference":"夜空ノムコウ"},{"id":"B275","text":"ME","buzz":21,"unique":13,"cat":"日常","source":"famous","reference":"SHAKE"},{"id":"B276","text":"イナズマ","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"青いイナズマ"},{"id":"B277","text":"ずっと","buzz":23,"unique":19,"cat":"日常","source":"famous","reference":"負けないで"},{"id":"B278","text":"想い","buzz":16,"unique":18,"cat":"日常","source":"famous","reference":"揺れる想い"},{"id":"B279","text":"フレンド","buzz":19,"unique":14,"cat":"日常","source":"famous","reference":"マイ フレンド"},{"id":"B280","text":"見えない","buzz":17,"unique":17,"cat":"日常","source":"famous","reference":"愛が見えない"},{"id":"B281","text":"神様","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"ロマンスの神様"},{"id":"B282","text":"とけるほど恋したい","buzz":25,"unique":8,"cat":"恋愛","source":"famous","reference":"ゲレンデがとけるほど恋したい"},{"id":"B283","text":"CELEBRATE?","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"CAN YOU CELEBRATE?"},{"id":"B284","text":"19 BLUES","buzz":14,"unique":19,"cat":"日常","source":"famous","reference":"SWEET 19 BLUES"},{"id":"B285","text":"goes by","buzz":17,"unique":18,"cat":"日常","source":"famous","reference":"Time goes by"},{"id":"B286","text":"My Friend","buzz":18,"unique":14,"cat":"日常","source":"famous","reference":"Dear My Friend"},{"id":"B287","text":"LOVE","buzz":25,"unique":11,"cat":"英語","source":"famous","reference":"LOVE LOVE LOVE"},{"id":"B288","text":"予想図Ⅱ","buzz":13,"unique":18,"cat":"日常","source":"famous","reference":"未来予想図Ⅱ"},{"id":"B289","text":"金曜日","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"決戦は金曜日"},{"id":"B290","text":"君へ","buzz":30,"unique":8,"cat":"恋愛","source":"famous","reference":"何度でも"},{"id":"B291","text":"いいね","buzz":18,"unique":14,"cat":"日常","source":"famous","reference":"晴れたらいいね"},{"id":"B292","text":"world","buzz":23,"unique":16,"cat":"日常","source":"famous","reference":"innocent world"},{"id":"B293","text":"never knows","buzz":13,"unique":14,"cat":"日常","source":"famous","reference":"Tomorrow never knows"},{"id":"B294","text":"詩","buzz":15,"unique":16,"cat":"日常","source":"famous","reference":"名もなき詩"},{"id":"B295","text":"ゲーム","buzz":12,"unique":17,"cat":"日常","source":"famous","reference":"シーソーゲーム"},{"id":"B296","text":"飛べるはず","buzz":21,"unique":15,"cat":"日常","source":"famous","reference":"空も飛べるはず"},{"id":"B297","text":"秋","buzz":28,"unique":10,"cat":"季節","source":"famous","reference":"楓"},{"id":"B298","text":"キラリ☆","buzz":15,"unique":18,"cat":"日常","source":"famous","reference":"涙がキラリ☆"},{"id":"B299","text":"しるし","buzz":12,"unique":15,"cat":"日常","source":"famous","reference":"愛のしるし"},{"id":"B300","text":"まつわるエトセトラ","buzz":21,"unique":20,"cat":"日常","source":"famous","reference":"渚にまつわるエトセトラ"},{"id":"B301","text":"生きる道","buzz":20,"unique":17,"cat":"日常","source":"famous","reference":"これが私の生きる道"},{"id":"B302","text":"純真","buzz":19,"unique":17,"cat":"日常","source":"famous","reference":"アジアの純真"},{"id":"B303","text":"Love","buzz":25,"unique":12,"cat":"英語","source":"famous","reference":"First Love"},{"id":"B304","text":"night","buzz":19,"unique":14,"cat":"日常","source":"famous","reference":"traveling"},{"id":"B305","text":"Life","buzz":12,"unique":17,"cat":"日常","source":"famous","reference":"Flavor Of Life"},{"id":"B306","text":"君に","buzz":26,"unique":7,"cat":"恋愛","source":"famous","reference":"花束を君に"},{"id":"B307","text":"なろうよ","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"家族になろうよ"},{"id":"B308","text":"波","buzz":21,"unique":14,"cat":"日常","source":"famous","reference":"TSUNAMI"},{"id":"B309","text":"キッス","buzz":18,"unique":18,"cat":"日常","source":"famous","reference":"涙のキッス"},{"id":"B310","text":"果実","buzz":20,"unique":16,"cat":"日常","source":"famous","reference":"真夏の果実"},{"id":"B311","text":"エリー","buzz":21,"unique":13,"cat":"日常","source":"famous","reference":"いとしのエリー"},{"id":"B312","text":"轍","buzz":17,"unique":13,"cat":"日常","source":"famous","reference":"希望の轍"},{"id":"B313","text":"恋人達","buzz":30,"unique":9,"cat":"恋愛","source":"famous","reference":"白い恋人達"},{"id":"B314","text":"ジョニー","buzz":17,"unique":14,"cat":"日常","source":"famous","reference":"波乗りジョニー"},{"id":"B315","text":"シンドバッド","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"勝手にシンドバッド"},{"id":"B316","text":"AFFAIR","buzz":19,"unique":14,"cat":"日常","source":"famous","reference":"LOVE AFFAIR"},{"id":"B317","text":"時代","buzz":28,"unique":11,"cat":"人生","source":"famous","reference":"少年時代"},{"id":"B318","text":"中へ","buzz":16,"unique":16,"cat":"日常","source":"famous","reference":"夢の中へ"},{"id":"B319","text":"ホテル","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"リバーサイド ホテル"},{"id":"B320","text":"Radio","buzz":19,"unique":20,"cat":"日常","source":"famous","reference":"壊れかけのRadio"},{"id":"B321","text":"ブルー","buzz":12,"unique":14,"cat":"日常","source":"famous","reference":"レイニー ブルー"},{"id":"B322","text":"行方","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"糸"},{"id":"B323","text":"あいだに","buzz":19,"unique":17,"cat":"日常","source":"famous","reference":"空と君のあいだに"},{"id":"B324","text":"今日も","buzz":17,"unique":15,"cat":"日常","source":"famous","reference":"ファイト！"},{"id":"B325","text":"眠り","buzz":19,"unique":18,"cat":"日常","source":"famous","reference":"浅い眠り"},{"id":"B326","text":"予感","buzz":15,"unique":14,"cat":"日常","source":"famous","reference":"恋の予感"},{"id":"B327","text":"さよなら","buzz":28,"unique":6,"cat":"恋愛","source":"famous","reference":"悲しみにさよなら"},{"id":"B328","text":"終りのハーモニー","buzz":16,"unique":17,"cat":"日常","source":"famous","reference":"夏の終りのハーモニー"},{"id":"B329","text":"ブギー・バック","buzz":16,"unique":15,"cat":"日常","source":"famous","reference":"今夜はブギー・バック"},{"id":"B330","text":"儚い者たち","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"強く儚い者たち"},{"id":"B331","text":"夏","buzz":28,"unique":5,"cat":"季節","source":"famous","reference":"カブトムシ"},{"id":"B332","text":"笑顔","buzz":15,"unique":17,"cat":"日常","source":"famous","reference":"ボーイフレンド"},{"id":"B333","text":"続き","buzz":14,"unique":17,"cat":"日常","source":"famous","reference":"Story"},{"id":"B334","text":"軌跡","buzz":12,"unique":17,"cat":"日常","source":"famous","reference":"キセキ"},{"id":"B335","text":"彼方","buzz":19,"unique":16,"cat":"日常","source":"famous","reference":"遥か"},{"id":"B336","text":"咲かない花","buzz":20,"unique":17,"cat":"日常","source":"famous","reference":"ここにしか咲かない花"},{"id":"B337","text":"花びらたち","buzz":14,"unique":14,"cat":"日常","source":"famous","reference":"桜の花びらたち"},{"id":"B338","text":"紙飛行機","buzz":18,"unique":19,"cat":"日常","source":"famous","reference":"365日の紙飛行機"},{"id":"B339","text":"ゲット","buzz":13,"unique":13,"cat":"日常","source":"famous","reference":"フライングゲット"},{"id":"B340","text":"シュシュ","buzz":21,"unique":13,"cat":"日常","source":"famous","reference":"ポニーテールとシュシュ"},{"id":"B341","text":"カチューシャ","buzz":15,"unique":13,"cat":"日常","source":"famous","reference":"Everyday、カチューシャ"},{"id":"B342","text":"マジョリティー","buzz":15,"unique":16,"cat":"日常","source":"famous","reference":"サイレントマジョリティー"},{"id":"B343","text":"セゾン","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"二人セゾン"},{"id":"B344","text":"Summer","buzz":18,"unique":15,"cat":"日常","source":"famous","reference":"裸足でSummer"},{"id":"B345","text":"夏の日","buzz":29,"unique":9,"cat":"季節","source":"famous","reference":"恋する夏の日"},{"id":"B346","text":"ロックを聴かない","buzz":19,"unique":18,"cat":"日常","source":"famous","reference":"君はロックを聴かない"},{"id":"B347","text":"ヒ","buzz":11,"unique":17,"cat":"日常","source":"famous","reference":"ハルノヒ"},{"id":"B348","text":"フラワー","buzz":19,"unique":15,"cat":"日常","source":"famous","reference":"ドライフラワー"},{"id":"B349","text":"花唄","buzz":22,"unique":18,"cat":"日常","source":"famous","reference":"怪獣の花唄"},{"id":"B350","text":"向こう","buzz":19,"unique":18,"cat":"日常","source":"famous","reference":"水平線"},{"id":"B351","text":"花子さん","buzz":20,"unique":13,"cat":"日常","source":"famous","reference":"高嶺の花子さん"},{"id":"B352","text":"ソング","buzz":13,"unique":20,"cat":"日常","source":"famous","reference":"クリスマスソング"},{"id":"B353","text":"冬","buzz":29,"unique":8,"cat":"季節","source":"famous","reference":"ヒロイン"},{"id":"B354","text":"惑星","buzz":28,"unique":7,"cat":"夜","source":"famous","reference":"恋"},{"id":"B355","text":"君","buzz":28,"unique":4,"cat":"恋愛","source":"famous","reference":"前前前世"},{"id":"B356","text":"空","buzz":15,"unique":16,"cat":"日常","source":"famous","reference":"スパークル"},{"id":"B357","text":"や","buzz":22,"unique":19,"cat":"日常","source":"famous","reference":"なんでもないや"},{"id":"B358","text":"できることはまだあるかい","buzz":17,"unique":20,"cat":"日常","source":"famous","reference":"愛にできることはまだあるかい"},{"id":"B359","text":"炎","buzz":22,"unique":17,"cat":"日常","source":"famous","reference":"紅蓮華"},{"id":"B360","text":"散歌","buzz":21,"unique":14,"cat":"日常","source":"famous","reference":"残響散歌"},{"id":"B361","text":"駆ける","buzz":12,"unique":15,"cat":"日常","source":"famous","reference":"夜に駆ける"},{"id":"B362","text":"フィルム","buzz":18,"unique":12,"cat":"日常","source":"famous","reference":"115万キロのフィルム"},{"id":"B363","text":"午後","buzz":20,"unique":14,"cat":"日常","source":"famous","reference":"ミックスナッツ"},{"id":"B364","text":"香り","buzz":13,"unique":17,"cat":"日常","source":"famous","reference":"Lemon"},{"id":"B365","text":"鹿","buzz":14,"unique":16,"cat":"日常","source":"famous","reference":"馬と鹿"},{"id":"B366","text":"衝動","buzz":12,"unique":17,"cat":"日常","source":"famous","reference":"KICK BACK"},{"id":"B367","text":"Forever","buzz":16,"unique":18,"cat":"日常","source":"famous","reference":"Teenager Forever"},{"id":"B368","text":"残り香","buzz":19,"unique":14,"cat":"日常","source":"famous","reference":"香水"},{"id":"B369","text":"わ","buzz":17,"unique":14,"cat":"日常","source":"famous","reference":"うっせぇわ"},{"id":"B370","text":"最強","buzz":18,"unique":17,"cat":"反抗","source":"famous","reference":"私は最強"},{"id":"B371","text":"ライトパレード","buzz":27,"unique":15,"cat":"キラキラ","source":"famous","reference":"スターライトパレード"},{"id":"B372","text":"観測","buzz":11,"unique":14,"cat":"日常","source":"famous","reference":"天体観測"},{"id":"B373","text":"恋のうた","buzz":29,"unique":6,"cat":"恋愛","source":"famous","reference":"小さな恋のうた"},{"id":"B374","text":"届け","buzz":19,"unique":19,"cat":"日常","source":"famous","reference":"あなたに"},{"id":"B375","text":"かなで","buzz":18,"unique":18,"cat":"日常","source":"famous","reference":"奏"},{"id":"B376","text":"少年","buzz":24,"unique":13,"cat":"青春","source":"famous","reference":"全力少年"},{"id":"B377","text":"続く道","buzz":20,"unique":18,"cat":"日常","source":"famous","reference":"未来へ"},{"id":"B378","text":"架橋","buzz":12,"unique":14,"cat":"日常","source":"famous","reference":"栄光の架橋"},{"id":"B379","text":"花束を","buzz":27,"unique":10,"cat":"恋愛","source":"famous","reference":"愛をこめて花束を"},{"id":"B380","text":"気持ちで","buzz":15,"unique":14,"cat":"日常","source":"famous","reference":"やさしい気持ちで"},{"id":"B381","text":"レボリューション","buzz":17,"unique":17,"cat":"日常","source":"famous","reference":"タマシイレボリューション"},{"id":"B382","text":"日々","buzz":12,"unique":16,"cat":"日常","source":"famous","reference":"Beautiful"},{"id":"B383","text":"愛","buzz":30,"unique":10,"cat":"恋愛","source":"famous","reference":"恋と愛"},{"id":"B384","text":"コロッケ","buzz":5,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B385","text":"焼き鳥","buzz":11,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B386","text":"肉じゃが","buzz":12,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B387","text":"おでん","buzz":18,"unique":19,"cat":"食べ物","source":"generic","reference":null},{"id":"B388","text":"シチュー","buzz":6,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B389","text":"カステラ","buzz":11,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B390","text":"たい焼き","buzz":14,"unique":18,"cat":"食べ物","source":"generic","reference":null},{"id":"B391","text":"団子","buzz":17,"unique":18,"cat":"食べ物","source":"generic","reference":null},{"id":"B392","text":"せんべい","buzz":8,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B393","text":"プリンアラモード","buzz":18,"unique":20,"cat":"食べ物","source":"generic","reference":null},{"id":"B394","text":"焼き芋","buzz":15,"unique":16,"cat":"食べ物","source":"generic","reference":null},{"id":"B395","text":"たまご焼き","buzz":5,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B396","text":"梅干し","buzz":9,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B397","text":"納豆","buzz":10,"unique":20,"cat":"食べ物","source":"generic","reference":null},{"id":"B398","text":"豆腐","buzz":13,"unique":15,"cat":"食べ物","source":"generic","reference":null},{"id":"B399","text":"そうめん","buzz":18,"unique":20,"cat":"食べ物","source":"generic","reference":null},{"id":"B400","text":"うどん","buzz":16,"unique":18,"cat":"食べ物","source":"generic","reference":null},{"id":"B401","text":"そば","buzz":10,"unique":18,"cat":"食べ物","source":"generic","reference":null},{"id":"B402","text":"お好み焼き","buzz":9,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B403","text":"猫","buzz":9,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B404","text":"犬","buzz":12,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B405","text":"カラス","buzz":12,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B406","text":"すずめ","buzz":10,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B407","text":"イルカ","buzz":7,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B408","text":"ペンギン","buzz":11,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B409","text":"パンダ","buzz":11,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B410","text":"ライオン","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B411","text":"ハムスター","buzz":10,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B412","text":"傘立て","buzz":13,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B413","text":"靴箱","buzz":8,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B414","text":"下駄箱","buzz":9,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B415","text":"自転車置き場","buzz":13,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B416","text":"ロッカー","buzz":12,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B417","text":"机","buzz":8,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B418","text":"椅子","buzz":5,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B419","text":"カーテン","buzz":10,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B420","text":"電灯","buzz":5,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B421","text":"扇風機","buzz":18,"unique":11,"cat":"季節","source":"generic","reference":null},{"id":"B422","text":"エアコン","buzz":10,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B423","text":"こたつ","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B424","text":"布団","buzz":10,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B425","text":"枕","buzz":11,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B426","text":"スリッパ","buzz":11,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B427","text":"歯ブラシ","buzz":5,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B428","text":"シャンプー","buzz":12,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B429","text":"石けん","buzz":7,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B430","text":"タオル","buzz":8,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B431","text":"ドライヤー","buzz":6,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B432","text":"スーパー","buzz":11,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B433","text":"本屋","buzz":7,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B434","text":"パン屋","buzz":12,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B435","text":"花屋","buzz":12,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B436","text":"駅前","buzz":11,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B437","text":"公園","buzz":13,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B438","text":"神社","buzz":9,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B439","text":"寺","buzz":10,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B440","text":"遊園地","buzz":12,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B441","text":"観覧車","buzz":13,"unique":14,"cat":"日常","source":"generic","reference":null},{"id":"B442","text":"ジェットコースター","buzz":9,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B443","text":"映画館","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B444","text":"水族館","buzz":9,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B445","text":"動物園","buzz":7,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B446","text":"美術館","buzz":5,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B447","text":"博物館","buzz":11,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B448","text":"図書館","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B449","text":"病院","buzz":5,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B450","text":"学校","buzz":13,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B451","text":"チャペル","buzz":9,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B452","text":"空港","buzz":17,"unique":11,"cat":"和風","source":"generic","reference":null},{"id":"B453","text":"港","buzz":15,"unique":11,"cat":"和風","source":"generic","reference":null},{"id":"B454","text":"トンネル","buzz":6,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B455","text":"橋","buzz":5,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B456","text":"坂道","buzz":9,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B457","text":"踏切","buzz":13,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B458","text":"路地","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B459","text":"手袋","buzz":11,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B460","text":"マフラー","buzz":10,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B461","text":"帽子","buzz":12,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B462","text":"眼鏡","buzz":6,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B463","text":"指輪","buzz":9,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B464","text":"ネックレス","buzz":5,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B465","text":"ハンカチ","buzz":6,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B466","text":"財布","buzz":10,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B467","text":"鍵束","buzz":7,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B468","text":"腕時計","buzz":5,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B469","text":"定期券","buzz":6,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B470","text":"レシート","buzz":8,"unique":14,"cat":"日常","source":"generic","reference":null},{"id":"B471","text":"ポイントカード","buzz":10,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B472","text":"手帳","buzz":10,"unique":14,"cat":"日常","source":"generic","reference":null},{"id":"B473","text":"カレンダー","buzz":9,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B474","text":"ポスター","buzz":13,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B475","text":"チラシ","buzz":7,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B476","text":"新聞","buzz":12,"unique":14,"cat":"日常","source":"generic","reference":null},{"id":"B477","text":"雑誌","buzz":13,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B478","text":"ラジオ","buzz":7,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B479","text":"テレビ","buzz":12,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B480","text":"カセット","buzz":8,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B481","text":"レコード","buzz":7,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B482","text":"CD","buzz":5,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B483","text":"スピーカー","buzz":12,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B484","text":"マイク","buzz":6,"unique":15,"cat":"日常","source":"generic","reference":null},{"id":"B485","text":"ギター","buzz":12,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B486","text":"ピアノ","buzz":7,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B487","text":"ドラム","buzz":6,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B488","text":"ベース","buzz":13,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B489","text":"トランペット","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B490","text":"サックス","buzz":13,"unique":17,"cat":"日常","source":"generic","reference":null},{"id":"B491","text":"ハーモニカ","buzz":10,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B492","text":"オルゴール","buzz":5,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B493","text":"ベル","buzz":5,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B494","text":"拍手","buzz":6,"unique":19,"cat":"日常","source":"generic","reference":null},{"id":"B495","text":"歓声","buzz":11,"unique":20,"cat":"日常","source":"generic","reference":null},{"id":"B496","text":"アンコール","buzz":12,"unique":18,"cat":"日常","source":"generic","reference":null},{"id":"B497","text":"夜風","buzz":20,"unique":10,"cat":"季節","source":"generic","reference":null},{"id":"B498","text":"潮風","buzz":17,"unique":9,"cat":"季節","source":"generic","reference":null},{"id":"B499","text":"木漏れ日","buzz":13,"unique":16,"cat":"日常","source":"generic","reference":null},{"id":"B500","text":"朝露","buzz":6,"unique":20,"cat":"日常","source":"generic","reference":null}];
-const synergy={
- '恋愛|恋愛':1.04,'季節|季節':1.04,'青春|青春':1.04,'和風|和風':1.05,'夜|夜':1.05,'食べ物|食べ物':.98,
- '夜|食べ物':1.08,'食べ物|夜':1.08,'恋愛|食べ物':1.06,'食べ物|恋愛':1.06,'青春|食べ物':1.05,'食べ物|青春':1.05,
- '和風|食べ物':1.06,'食べ物|和風':1.06,'不思議|食べ物':1.07,'食べ物|不思議':1.07,'キラキラ|恋愛':1.06,'恋愛|キラキラ':1.06,
- '反抗|青春':1.06,'青春|反抗':1.06,'英語|反抗':1.05,'反抗|英語':1.05,'人生|和風':1.07,'和風|人生':1.07,'夜|恋愛':1.04,'恋愛|夜':1.04
-};
-const happenings=[
- {name:'人気インフルエンサーが紹介！',desc:'SNSで一気に拡散された！',m:1.35,t:'good',w:18},
- {name:'ダンス動画が流行！',desc:'真似したくなるフレーズが話題に！',m:1.28,t:'good',w:14},
- {name:'ラジオでヘビロテ！',desc:'耳に残って再生数アップ！',m:1.18,t:'good',w:16},
- {name:'タイトルが炎上！',desc:'「何この曲名？」とざわついたが、逆に再生された！',m:1.22,t:'good',w:10},
- {name:'強力ライバルと発売日が激突',desc:'注目をやや奪われた…。',m:.88,t:'bad',w:15},
- {name:'MVの評判がいまひとつ…',desc:'曲はいいのに伸びきらない。',m:.90,t:'bad',w:15},
- {name:'季節外れの大バズ！',desc:'なぜか今の空気にハマった！',m:1.42,t:'good',w:7},
- {name:'世界的ミーム化！',desc:'予想外の伝播で超拡散！',m:1.9,t:'good',w:3},
-];
-const rankTable=[
- {need:0,name:'駆け出し',factor:1.00},
- {need:1000000,name:'注目の新人',factor:1.17},
- {need:10000000,name:'ブレイクスター',factor:1.43},
- {need:30000000,name:'人気スター',factor:1.77},
- {need:60000000,name:'国民的スター',factor:2.16},
- {need:100000000,name:'伝説級スター',factor:2.50}
-];
-const app=t=>document.getElementById('app').innerHTML=t;
-// 通常ランクは星1個から始まり、1億再生達成時は王冠で表示する。
-const rankMark=r=>r.idx>=rankTable.length-1?'👑':'★★★★★'.slice(0,r.idx+1)+'☆☆☆☆☆'.slice(0,4-r.idx);
-let state={};
-function resetState(){state={screen:'title',name:'',gender:'',genre:'',season:0,cum:0,results:[],trend:null,candidatesA:[],candidatesB:[],selA:null,selB:null,last:null,error:'',yearLuck:1,pendingRankUp:null}}
-function getRank(cum=state.cum){let idx=0;for(let i=0;i<rankTable.length;i++)if(cum>=rankTable[i].need)idx=i;return {...rankTable[idx],idx}}
-function avatarHTML(mode='normal'){if(!state.genre)return '';const g=genreInfo[state.genre],emoji=state.gender==='男性'?g.emojiM:g.emojiF;const cls=mode==='rankup'?'avatar rankup':'avatar';const key=`${state.gender}|${state.genre}`;const src=characterImages[key]||'';const visual=src?`<div class="charimg-wrap"><img class="charimg" src="${src}" alt="${state.name}"></div>`:`<div class="emoji">${emoji}</div>`;return `<div class="${cls}">${visual}</div>`}
-function nav(screen){state.screen=screen;render()}
-function pickTrendCat(){const cats=['恋愛','季節','食べ物','夜','青春','和風','不思議','キラキラ','日常','人生','反抗','英語'];return cats[Math.floor(Math.random()*cats.length)]}
-function sampleWithoutReplacement(arr,n,excludeIds=[]){const pool=arr.filter(x=>!excludeIds.includes(x.id));const out=[];while(out.length<n&&pool.length){const i=Math.floor(Math.random()*pool.length);out.push(pool.splice(i,1)[0])}return out}
-function startSeason(){
- state.trend={cat:pickTrendCat()};
- state.selA=null;
- state.selB=null;
+  /*
+    禁則処理
+    noStart: 行頭禁止文字
+    noEnd  : 行末禁止文字
+    日本語組版で一般的なものを広めに収録
+  */
+  const noStart=new Set([...
+    `、。，．・：；？！‼⁉⁈⁇）」』】〕〉》］｝〙〗〟’”»` +
+    `ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ` +
+    `ー〜～…‥ゝゞ々ヽヾ〻` +
+    `・`
+  ]);
 
- // トレンド語はA・B合わせた6候補の中で最大1語。
- // 35%の確率でトレンド語なし、65%の確率で1語だけ出る。
- const showTrendWord=Math.random()<0.65;
- let trendInA=false;
- let trendInB=false;
- let hitA=null;
- let hitB=null;
+  const noEnd=new Set([...
+    `（〔［｛〈《「『【〘〖〝‘“«`
+  ]);
 
- if(showTrendWord){
-   // AかBのどちらか一方だけに出す。
-   if(Math.random()<0.5){
-     const poolA=A.filter(x=>x.cat===state.trend.cat);
-     if(poolA.length){
-       hitA=sampleWithoutReplacement(poolA,1)[0];
-       trendInA=true;
-     }
-   }else{
-     const poolB=B.filter(x=>x.cat===state.trend.cat);
-     if(poolB.length){
-       hitB=sampleWithoutReplacement(poolB,1)[0];
-       trendInB=true;
-     }
-   }
- }
+  const openingBrackets=new Set([...
+    `（〔［｛〈《「『【〘〖〝‘“«`
+  ]);
+  const closingBrackets=new Set([...
+    `）〕］｝〉》」』】〙〗〟’”»`
+  ]);
 
- // 選ばれなかった側、および残り候補にはトレンド属性を入れない。
- const nonTrendA=A.filter(x=>x.cat!==state.trend.cat);
- const nonTrendB=B.filter(x=>x.cat!==state.trend.cat);
+  const cells=[];
+  let text='';
+  let composing=false;
 
- state.candidatesA=trendInA
-   ? shuffle([hitA,...sampleWithoutReplacement(nonTrendA,2)]).slice(0,3)
-   : sampleWithoutReplacement(nonTrendA,3);
+  for(let c=0;c<COLS;c++){
+    for(let r=0;r<ROWS;r++){
+      const div=document.createElement('div');
+      div.className='cell';
+      div.dataset.index=c*ROWS+r;
+      div.addEventListener('click',()=>{
+        placeIme();
+        ime.focus();
+      });
+      grid.appendChild(div);
+      cells.push(div);
+    }
+  }
 
- state.candidatesB=trendInB
-   ? shuffle([hitB,...sampleWithoutReplacement(nonTrendB,2)]).slice(0,3)
-   : sampleWithoutReplacement(nonTrendB,3);
+  // 固定20マスのため、ぶら下げではなく「追い出し・追い込み」で処理する
+  function layout(str){
+    const chars=[...str].slice(0,LIMIT);
+    const cols=[];
+    let i=0;
 
- nav('season')
-}
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-function validateDebut(){state.error='';if(!state.name.trim()){state.error='アーティスト名を入力してください。';render();return}if(!state.gender){state.error='性別を選んでください。';render();return}if(!state.genre){state.error='ジャンルを選んでください。';render();return}state.yearLuck=.95+Math.random()*.12;state.season=0;state.cum=0;state.results=[];state.pendingRankUp=null;startSeason()}
-function render(){
- if(state.screen==='title') return renderTitle();
- if(state.screen==='debut') return renderDebut();
- if(state.screen==='season') return renderSeason();
- if(state.screen==='song') return renderSong();
- if(state.screen==='release') return renderRelease();
- if(state.screen==='rankup') return renderRankUp();
- if(state.screen==='result') return renderResult();
- if(state.screen==='year') return renderYear();
-}
-function renderTitle(){const best=Number(safeGet('buzzStarBest')||0);app(`<div class="card center"><div class="logo">バズれ、<span>1億再生！</span><br>スター誕生☆</div><p class="subtitle">1年間で4曲をリリースし、累計1億再生を目指せ！<br></p><div class="record"><div class="small">BEST RECORD</div><div class="big-number" style="font-size:34px">${fmt(best)}</div><div class="small">再生</div></div><div class="actions"><button class="primary" onclick="nav('debut')">GAME START</button></div></div>`)}
-function renderDebut(){app(`<div class="card"><div class="center"><div class="pill">あなたのスターを作ろう</div><h2 style="margin:14px 0 0">デビュー設定</h2></div><div class="field"><label>① アーティスト名</label><input id="nameInput" maxlength="16" placeholder="例：NANA" value="${escapeHTML(state.name)}" /></div><div class="form-error ${state.error?'show':''}">${escapeHTML(state.error||'')}</div><div class="field"><label>② 性別</label><div class="choice-grid"><button class="choice ${state.gender==='男性'?'selected':''}" onclick="setGender('男性')">男性</button><button class="choice ${state.gender==='女性'?'selected':''}" onclick="setGender('女性')">女性</button></div></div><div class="field"><label>③ ジャンル</label><div class="choice-grid"><button class="choice ${state.genre==='演歌'?'selected':''}" onclick="setGenre('演歌')">演歌</button><button class="choice ${state.genre==='ロック'?'selected':''}" onclick="setGenre('ロック')">ロック</button><button class="choice ${state.genre==='ポップス'?'selected':''}" onclick="setGenre('ポップス')">ポップス</button><button class="choice ${state.genre==='アイドル'?'selected':''}" onclick="setGenre('アイドル')">アイドル</button></div></div>${state.genre&&state.gender?avatarHTML():''}<div class="actions"><button class="primary" onclick="saveNameAndDebut()">デビューする！</button><button class="ghost" onclick="nav('title')">戻る</button></div></div>`);const input=document.getElementById('nameInput');if(input){input.addEventListener('input',e=>state.name=e.target.value)}}
-function saveNameAndDebut(){const input=document.getElementById('nameInput');if(input)state.name=input.value;validateDebut()}
-function setGender(g){const input=document.getElementById('nameInput');if(input)state.name=input.value;state.gender=g;renderDebut()}
-function setGenre(g){const input=document.getElementById('nameInput');if(input)state.name=input.value;state.genre=g;renderDebut()}
-function headerThumbHTML(){if(!state.genre||!state.gender)return '';const key=`${state.gender}|${state.genre}`;const src=characterImages[key]||'';return src?`<div class="status-thumb"><img src="${src}" alt="${state.gender} ${state.genre}"></div>`:''}
-function headerTopHTML(){const s=seasons[state.season],r=getRank();return `<div class="topbar"><div class="status-left"><div class="pill">${s.icon} ${s.en}　${state.season===3?'FINAL SINGLE':'第'+(state.season+1)+'弾'}</div><div class="status-identity">${headerThumbHTML()}<div class="status-text"><div class="status-name">${escapeHTML(state.name)}</div><div class="status-sub">${state.genre}</div></div></div></div><div class="status-right"><div class="status-stars">${rankMark(r)}</div><div class="status-rank-name">${r.name}</div></div></div>`}
-function statusPanelHTML(){const remain=Math.max(0,100000000-state.cum);const progress=Math.min(100,state.cum/1000000);return `<div class="status-panel"><div class="label">年間累計</div><div class="status-value">${fmt(state.cum)} <span style="font-size:.55em;color:var(--muted);font-weight:700">/ 100,000,000</span></div><div class="progress"><div style="width:${progress}%"></div></div><div class="status-meta"><span>達成率 <b>${progress.toFixed(1)}%</b></span><span>1億まであと <b>${fmt(remain)}</b> 回</span></div></div>`}
-function headerHTML(){return `${headerTopHTML()}${statusPanelHTML()}`}
-function renderSeason(){const s=seasons[state.season],r=getRank();app(`<div class="card">${headerHTML()}<div class="center" style="padding:18px 0 6px"><div class="small">${state.season===3?'この一曲ですべてが決まる。':'今季のシングル制作が始まる。'}</div><div class="big-number" style="font-size:34px;margin-top:5px">${s.icon} ${s.jp}</div>${state.season===3?`<p class="subtitle">1億まであと <b>${fmt(Math.max(0,100000000-state.cum))}</b> 回</p>`:''}</div><div class="divider"></div><h3 style="margin-bottom:8px">📈 今季のトレンド</h3><div class="trend"><span>${catLabel[state.trend.cat]||state.trend.cat}</span><span class="up">1語につき +15%</span></div><div class="trend-note">候補に <b>TREND</b> が出ることがあります。6候補の中で最大1語だけで、<b>出ない季節もあります。</b>使えば再生数＋15％。</div><div class="actions"><button class="primary" onclick="nav('song')">曲名を作る！</button></div></div>`)}
-function renderSong(){app(`<div class="card">${headerHTML()}<h2 style="margin:18px 0 4px">🎼 曲名を作ろう！</h2><div class="small">Aから1語、Bから1語を選択。引き直しはありません。</div><div class="word-section"><h3>Aワード：3つから選ぶ</h3><div class="words">${state.candidatesA.map(w=>wordBtn(w,'A')).join('')}</div></div><div class="word-section"><h3>Bワード：3つから選ぶ</h3><div class="words">${state.candidatesB.map(w=>wordBtn(w,'B')).join('')}</div></div>${previewHTML()}</div>`)}
-function wordBtn(w,type){const selected=(type==='A'?state.selA:state.selB)?.id===w.id;const trendHit=w.cat===state.trend.cat;return `<button class="word ${selected?'selected':''} ${trendHit?'trend-hit':''}" onclick="selectWord('${type}','${w.id}')">${escapeHTML(w.text)}<small>${catLabel[w.cat]||w.cat}</small>${trendHit?`<span class="trend-badge">TREND +15%</span>`:''}</button>`}
-function selectWord(type,id){const arr=type==='A'?state.candidatesA:state.candidatesB;state[type==='A'?'selA':'selB']=arr.find(x=>x.id===id);renderSong()}
-function previewStats(){if(!state.selA||!state.selB)return null;const a=state.selA,b=state.selB;const buzz=a.buzz+b.buzz,uni=a.unique+b.unique;const potential=buzz*uni;const trendCount=(a.cat===state.trend.cat?1:0)+(b.cat===state.trend.cat?1:0);const genre=genreInfo[state.genre].likes.includes(a.cat)+genreInfo[state.genre].likes.includes(b.cat);return {buzz,uni,potential,trendCount,genre,catchy:Math.max(1,Math.min(5,Math.round(buzz/11))),unique:Math.max(1,Math.min(5,Math.round(uni/7))),fit:Math.max(1,Math.min(5,3+genre))}}
-function previewHTML(){const p=previewStats();if(!p)return `<div class="title-preview center"><div class="small">AとBを選ぶと曲名が完成します</div><div class="song-title" style="color:#8d95b8">？？？</div></div>`;const title=state.selA.text+state.selB.text;let comment='悪くない。あとは世間に届くかどうかだ。';if(p.unique>=5&&p.catchy>=4)comment='強い。しかも妙に気になるタイトルだ！';else if(p.unique>=5)comment='かなり独特。刺されば大きくバズるかも。';else if(p.catchy>=5)comment='かなりキャッチー。王道ヒットが狙えそう。';else if(p.trendCount>0)comment='今季のトレンドも追い風になる。';const trendText=p.trendCount===1?'1語使用 → +15%':'2語使用 → +30%';const trendBlock=p.trendCount>0?`<div class="trend-note">📈 トレンド効果：<b>${trendText}</b><br><span class="small">トレンドは追い風です。曲名そのものが強ければ、使わない方が伸びる場合もあります。</span></div>`:'';return `<div class="title-preview center"><div class="small">♪ 完成タイトル</div><div class="song-title">${escapeHTML(title)}</div></div><div class="meter-row"><span>キャッチー</span><div class="meter"><i style="width:${p.catchy*20}%"></i></div><b>${'★'.repeat(p.catchy)}</b></div><div class="meter-row"><span>ユニーク</span><div class="meter"><i style="width:${p.unique*20}%"></i></div><b>${'★'.repeat(p.unique)}</b></div><div class="meter-row"><span>歌手との相性</span><div class="meter"><i style="width:${p.fit*20}%"></i></div><b>${'★'.repeat(p.fit)}</b></div>${trendBlock}<div class="record"><div class="small">プロデューサー評</div><b>${comment}</b></div><div class="actions"><button class="primary" onclick="prepareRelease()">この曲で勝負！</button></div>`}
-function prepareRelease(){if(!state.selA||!state.selB)return;const a=state.selA,b=state.selB,p=previewStats(),r=getRank();
- const buzzNorm=p.buzz/40; const uniNorm=p.uni/22;
- let titleMod=.50+.30*buzzNorm+.24*uniNorm; titleMod=Math.max(.58,Math.min(1.38,titleMod));
- const trendM=1+(p.trendCount*.15);
- const likes=genreInfo[state.genre].likes;let genreM=1+(likes.includes(a.cat)?.04:0)+(likes.includes(b.cat)?.04:0);
- const syn=synergy[`${a.cat}|${b.cat}`]||1;const randomM=.91+Math.random()*.18;const h=rollHappening();
- let plays=seasons[state.season].base*r.factor*titleMod*trendM*genreM*syn*randomM*state.yearLuck*h.m;
- plays=Math.round(plays/1000)*1000;
- state.last={title:a.text+b.text,plays,h,trendCount:p.trendCount,debug:{base:seasons[state.season].base,rank:r.factor,titleMod,trendM,genreM,syn,randomM,yearLuck:state.yearLuck},rankBefore:r};nav('release')}
-function rollHappening(){if(Math.random()>.25)return {name:'',desc:'',m:1,t:'none'};const total=happenings.reduce((s,x)=>s+x.w,0);let n=Math.random()*total;for(const h of happenings){n-=h.w;if(n<=0)return h}return happenings[0]}
-function renderRelease(){const x=state.last;app(`<div class="card release-wrap"><div class="release-title">NEW SINGLE / RELEASE</div><div class="song-title" style="margin-top:10px">♪ ${escapeHTML(x.title)}</div><div id="counter" class="counter">0</div><div class="small">再生</div><div id="hap"></div><div id="releaseNext" class="hidden actions"><button class="primary" onclick="finishRelease()">結果を見る</button></div></div>`);animateCounter(x.plays,x.h)}
-function animateCounter(target,h){const el=document.getElementById('counter'),duration=2200,start=performance.now();let hapShown=false;function tick(now){const t=Math.min(1,(now-start)/duration);const eased=1-Math.pow(1-t,3);el.textContent=fmt(target*eased);if(!hapShown&&h.m!==1&&t>.48){hapShown=true;const box=document.getElementById('hap');box.innerHTML=`<div class="happening ${h.t}"><div class="small">⚡ HAPPENING!</div><b>${h.name}</b><div class="small" style="margin-top:5px">${h.desc}</div></div>`}if(t<1)requestAnimationFrame(tick);else document.getElementById('releaseNext').classList.remove('hidden')}requestAnimationFrame(tick)}
-function finishRelease(){const oldRank=getRank(state.cum);state.cum+=state.last.plays;const newRank=getRank(state.cum);state.results.push({season:state.season,title:state.last.title,plays:state.last.plays,h:state.last.h,trendCount:state.last.trendCount,rankBefore:oldRank.idx,rankAfter:newRank.idx});if(newRank.idx>oldRank.idx){state.pendingRankUp={from:oldRank,to:newRank};nav('rankup')}else{nav('result')}}
-function renderRankUp(){const ru=state.pendingRankUp;if(!ru)return nav('result');app(`<div class="card rankup-card center"><div class="rankup-banner">RANK UP!</div><div class="rankup-title">${escapeHTML(state.name)}</div><div class="rankup-stage">${avatarHTML('rankup')}</div><div class="rankup-stars">${rankMark(ru.from)}</div><div class="rankup-arrow">↓</div><div class="rankup-stars">${rankMark(ru.to)}</div><div class="rankup-sub">${ru.to.name}</div><div class="rankup-note"><b>ランクアップ！</b><br>${ru.to.idx===rankTable.length-1?'1億再生達成！伝説級スターの誕生です。':'知名度が上がり、次の曲はさらに多くの人に届きます。'}</div><div class="actions"><button class="primary" onclick="closeRankUp()">結果を見る</button></div></div>`)}
-function closeRankUp(){state.pendingRankUp=null;nav('result')}
-function renderResult(){const x=state.results[state.results.length-1];const trendEffect=x.trendCount?`+${x.trendCount*15}%`:'';const trendResult=x.trendCount>0?`<div class="trend-note">📈 今回のトレンド補正：<b>${trendEffect}</b></div>`:'';app(`<div class="card center">${headerTopHTML()}<div class="divider"></div><div class="small">RELEASE RESULT</div><h2>♪ ${escapeHTML(x.title)}</h2><div class="label">今回の再生数</div><div class="big-number">${fmt(x.plays)}</div><div class="small">回</div>${trendResult}<div class="divider"></div>${statusPanelHTML()}<div class="actions"><button class="primary" onclick="nextAfterResult()">${state.season===3?'年間結果へ':seasons[state.season+1].jp+'へ'}</button></div></div>`)}
-function nextAfterResult(){if(state.season===3){nav('year');return}state.season++;startSeason()}
-function resultHeroHTML(){
- const rank=getRank();
- const meta=resultMetaForRank(rank);
- return `<div class="result-hero ${meta.cls}"><div class="mini">RESULT ANNOUNCEMENT</div><div class="hero-title">${meta.award}</div><div class="hero-sub">${meta.sub}</div><div class="hero-stars">${rankMark(rank)}</div><div class="avatar-wrap">${avatarHTML('rankup')}</div><div class="hero-copy">${meta.copy}</div></div>`;
-}
+    while(i<chars.length && cols.length<COLS){
+      let remaining=chars.length-i;
+      let take=Math.min(ROWS, remaining);
 
-function resultMetaForRank(rank=getRank()){
- const data=[
-  {cls:'challenger',sub:'ここからスタート！',copy:'まだ名前は広く知られていない。次の一年で最初の波をつかもう。'},
-  {cls:'challenger',sub:'少しずつ注目が集まった！',copy:'あなたの歌を待つ人が増え始めた。次のヒットはもう近い。'},
-  {cls:'break',sub:'ブレイク達成！',copy:'確かな手応えをつかんだ一年。スター街道を走り始めた。'},
-  {cls:'popular',sub:'人気急上昇！',copy:'多くのファンをつかみ、ヒットを期待される存在になった。'},
-  {cls:'national',sub:'1億再生まであと一歩！',copy:'街でもテレビでもネットでも、あなたの曲が流れ始めている。'},
-  {cls:'legend',sub:'1億再生突破！',copy:'誰もがあなたの名を知っている。まさに時代を作った存在だ。'}
- ];
- return {...data[rank.idx],award:rank.name};
-}
-function shareResultMeta(){
- return resultMetaForRank(getRank());
-}
-function screenshotCardHTML(){
- const meta=shareResultMeta(), rank=getRank();
- const best=Math.max(...state.results.map(x=>x.plays));
- const bestSong=state.results.find(x=>x.plays===best);
- return `<div class="share-card ${meta.cls}">
-   <div class="share-brand">バズれ、1億再生！スター誕生</div>
-   <div class="share-year">YEAR RESULT</div>
-   <div class="share-award">${meta.award}</div>
-   <div class="share-sub">${meta.sub}</div>
-   ${avatarHTML('rankup')}
-   <div class="share-artist">${escapeHTML(state.name)}</div>
-   <div class="share-total-label">年間総再生数</div>
-   <div class="share-total">${fmt(state.cum)}</div>
-   <div class="share-total-unit">再生</div>
-   <div class="share-rank">${rankMark(rank)}　${rank.name}</div>
-   <div class="share-songs">
-     ${state.results.map((x,i)=>`<div class="share-song">
-       <div>${seasons[i].icon}</div>
-       <div class="share-song-title">${escapeHTML(x.title)}</div>
-       <div class="share-song-plays">${fmt(x.plays)}</div>
-     </div>`).join('')}
-   </div>
-   <div class="share-best">
-     <div class="small">🏆 BEST HIT</div>
-     <b>♪ ${escapeHTML(bestSong.title)}</b>
-     <div>${fmt(bestSong.plays)} 再生</div>
-   </div>
-   <div class="share-footer">4曲で累計1億再生を目指せ！</div>
- </div>`;
-}
+      // 行末禁止文字が20字目に来る場合、19字で折る
+      if(take===ROWS && noEnd.has(chars[i+take-1])){
+        take=Math.max(1, take-1);
+      }
 
-function renderYear(){
- const success=state.cum>=100000000;
- const best=Math.max(...state.results.map(x=>x.plays));
- const bestSong=state.results.find(x=>x.plays===best);
- const oldBest=Number(safeGet('buzzStarBest')||0);
- if(state.cum>oldBest)safeSet('buzzStarBest',String(state.cum));
- app(`<div class="card">
-   ${screenshotCardHTML()}
-   <div class="share-note">↑ このカード部分をそのままスクリーンショットできます。</div>
-   <div class="record">
-     <div class="label">今回の結果</div>
-     <b>${success?'1億再生クリア！':'1億再生まであと '+fmt(Math.max(0,100000000-state.cum))+' 回'}</b>
-   </div>
-   <div class="actions">
-     <button class="primary" onclick="restart()">もう一年挑戦する</button>
-     <button class="secondary" onclick="nav('title')">タイトルへ</button>
-   </div>
- </div>`)
-}
-function restart(){const n=state.name,g=state.gender,j=state.genre;resetState();state.name=n;state.gender=g;state.genre=j;state.screen='debut';render()}
-function escapeHTML(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-resetState();render();
+      // 次列先頭が行頭禁止になる場合、現在列を1字短くして禁則文字を次々調整
+      // 固定20マスなので、禁則文字の直前から次列へ送る方式
+      while(take>1 && i+take<chars.length && noStart.has(chars[i+take])){
+        take--;
+      }
+
+      // 「開き括弧 + 1文字」などが列末で分断されにくいよう補正
+      if(take>=1 && i+take<chars.length){
+        const last=chars[i+take-1];
+        if(openingBrackets.has(last) && take>1){
+          take--;
+        }
+      }
+
+      const line=chars.slice(i,i+take);
+      cols.push(line);
+      i+=take;
+    }
+    return cols;
+  }
+
+  function classify(ch){
+    if(ch==='。') return 'kuten';
+    if(ch==='、') return 'touten';
+    if(ch==='・' || ch==='：' || ch==='；') return 'center-punct';
+    if(openingBrackets.has(ch) || closingBrackets.has(ch)) return 'bracket';
+    if(ch==='ー' || ch==='〜' || ch==='～') return 'longmark';
+
+    // 算用数字・欧文は1文字単位で横倒し
+    if(/[0-9A-Za-z]/.test(ch)) return 'rotate';
+
+    return '';
+  }
+
+  function render(){
+    cells.forEach(c=>{
+      c.textContent='';
+      c.classList.remove('active');
+    });
+
+    const cols=layout(text);
+    let used=0;
+
+    cols.forEach((line,c)=>{
+      line.forEach((ch,r)=>{
+        if(c>=COLS || r>=ROWS) return;
+        const idx=c*ROWS+r;
+        const sp=document.createElement('span');
+        const cls=classify(ch);
+        sp.className='glyph'+(cls?' '+cls:'');
+        sp.textContent=ch;
+        cells[idx].appendChild(sp);
+        used++;
+      });
+    });
+
+    if(used<LIMIT && cells[used]) cells[used].classList.add('active');
+    count.textContent=`${[...text].length} / ${LIMIT}字`;
+    placeIme();
+    localStorage.setItem('tategaki400_text_v2',text);
+  }
+
+  function placeIme(){
+    const used=Math.min([...text].length,LIMIT-1);
+    const cell=cells[used];
+    if(!cell) return;
+    const wrap=document.getElementById('paperWrap').getBoundingClientRect();
+    const rect=cell.getBoundingClientRect();
+    ime.style.left=(rect.left-wrap.left)+'px';
+    ime.style.top=(rect.top-wrap.top)+'px';
+  }
+
+  function insertCommitted(s){
+    if(!s) return;
+    s=s.replace(/[\r\n\t]/g,'');
+    const remain=LIMIT-[...text].length;
+    if(remain<=0){
+      status.textContent='400字に達しています。';
+      ime.value='';
+      return;
+    }
+    text += [...s].slice(0,remain).join('');
+    ime.value='';
+    render();
+  }
+
+  ime.addEventListener('compositionstart',()=>composing=true);
+  ime.addEventListener('compositionend',e=>{
+    composing=false;
+    insertCommitted(e.data || ime.value);
+  });
+  ime.addEventListener('input',()=>{
+    if(composing) return;
+    if(ime.value) insertCommitted(ime.value);
+  });
+  ime.addEventListener('keydown',e=>{
+    if(e.key==='Backspace' && !composing){
+      e.preventDefault();
+      const a=[...text];
+      a.pop();
+      text=a.join('');
+      ime.value='';
+      render();
+    }
+    if(e.key==='Enter' || e.key==='Tab'){
+      e.preventDefault();
+    }
+  });
+
+  window.addEventListener('resize',placeIme);
+
+  document.getElementById('clearBtn').addEventListener('click',()=>{
+    if(confirm('すべての文字を消しますか？')){
+      text='';
+      render();
+      ime.focus();
+    }
+  });
+
+  document.getElementById('copyBtn').addEventListener('click',async()=>{
+    try{
+      await navigator.clipboard.writeText(text);
+      status.textContent='文章をコピーしました。';
+    }catch{
+      status.textContent='コピーできませんでした。';
+    }
+  });
+
+  document.getElementById('saveBtn').addEventListener('click',()=>{
+    const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='tategaki400.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  text=localStorage.getItem('tategaki400_text_v2')
+    || localStorage.getItem('tategaki400_text')
+    || '';
+  text=[...text].slice(0,LIMIT).join('');
+  render();
+  setTimeout(()=>ime.focus(),100);
+})();
 </script>
 </body>
 </html>
